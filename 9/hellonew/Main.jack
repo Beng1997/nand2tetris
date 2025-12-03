@@ -1,0 +1,14 @@
+class Main {
+   function void main() {
+      // since there is no appendString method, we have 2 options:
+      // 1. print each string separately
+      // 2. use the appendChar method in a loop
+      var String name;
+      let name = Keyboard.readLine("Enter your name: ");
+      do Output.printString("Hello ");
+      do Output.printString(name);
+      do Output.printString("!");
+      do Output.println();
+      return;
+   }
+}

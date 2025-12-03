@@ -1,0 +1,10 @@
+class Main {
+    function void main() {
+        var Flappy game;
+        do Flappy.newInstance();
+        let game = Flappy.getInstance();
+        do game.run();
+        do game.dispose();
+        return;
+    }
+}

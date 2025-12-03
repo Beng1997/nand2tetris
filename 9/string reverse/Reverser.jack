@@ -1,0 +1,14 @@
+class Reverser {
+    function String reverse(String s) {
+        var String reversed;
+        var int i;
+        let reversed = String.new(s.length());
+        let i = s.length() - 1;
+        while (~(i < 0)) {
+            let reversed = reversed.appendChar(s.charAt(i));
+            let i = i - 1;
+        }
+        return reversed;
+    }
+}
+        

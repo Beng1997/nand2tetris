@@ -1,0 +1,28 @@
+class Main {
+    function void main() {
+        var int start,end,i,ari_sum,factorial;
+        let start= Keyboard.readInt("Enter start");
+        let end= Keyboard.readInt("Enter end");
+        let i=start;
+        /* first we check if the start is less than end */
+        if (start < end){ 
+            let ari_sum=0;
+            let factorial=1;
+            while (i<(end+1)){
+                let ari_sum=ari_sum+i;
+                let factorial=factorial*i;
+                let i=i+1;
+            }
+            do Output.printString("The arithmetic sum is: ");
+            do Output.printInt(ari_sum);
+            do Output.println();
+            do Output.printString("The factorial is: ");
+            do Output.printInt(factorial);
+            return;
+        } 
+        else {
+            do Output.printString("Invalid input");
+            return;
+        }
+    }
+}

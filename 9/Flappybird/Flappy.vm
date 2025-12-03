@@ -1,0 +1,2929 @@
+function Flappy.new 1
+    push constant 6
+    call Memory.alloc 1
+    pop pointer 0
+    call Screen.clearScreen 0
+    pop temp 0
+    push constant 0
+    pop this 0
+    push constant 0
+    pop this 2
+    call Bird.new 0
+    pop this 1
+    push constant 8
+    call Array.new 1
+    pop this 3
+    push constant 0
+    pop local 0
+label Flappy_0
+    push local 0
+    push constant 4
+    lt
+    not
+    if-goto Flappy_1
+    push local 0
+    push constant 2
+    call Math.multiply 2
+    push this 3
+    add
+    push constant 1
+    neg
+    push constant 50
+    call Pipe.new 2
+    pop temp 0
+    pop pointer 1
+    push temp 0
+    pop that 0
+    push pointer 0
+    push local 0
+    push constant 2
+    call Math.multiply 2
+    push this 3
+    add
+    pop pointer 1
+    push that 0
+    push constant 1
+    neg
+    push constant 50
+    push constant 100
+    neg
+    call Flappy.resetPipe 5
+    pop temp 0
+    push local 0
+    push constant 2
+    call Math.multiply 2
+    push constant 1
+    add
+    push this 3
+    add
+    push constant 0
+    push constant 50
+    call Pipe.new 2
+    pop temp 0
+    pop pointer 1
+    push temp 0
+    pop that 0
+    push pointer 0
+    push local 0
+    push constant 2
+    call Math.multiply 2
+    push constant 1
+    add
+    push this 3
+    add
+    pop pointer 1
+    push that 0
+    push constant 0
+    push constant 50
+    push constant 100
+    neg
+    call Flappy.resetPipe 5
+    pop temp 0
+    push local 0
+    push constant 1
+    add
+    pop local 0
+    goto Flappy_0
+label Flappy_1
+    push constant 0
+    pop this 4
+    push constant 0
+    pop this 5
+    push pointer 0
+    push constant 0
+    push this 3
+    add
+    pop pointer 1
+    push that 0
+    push constant 1
+    push this 3
+    add
+    pop pointer 1
+    push that 0
+    call Flappy.pipeGenerator 3
+    pop temp 0
+    push pointer 0
+    push constant 0
+    push this 3
+    add
+    pop pointer 1
+    push that 0
+    push constant 1
+    neg
+    push constant 30
+    push constant 512
+    call Flappy.resetPipe 5
+    pop temp 0
+    push pointer 0
+    push constant 1
+    push this 3
+    add
+    pop pointer 1
+    push that 0
+    push constant 0
+    push constant 100
+    push constant 512
+    call Flappy.resetPipe 5
+    pop temp 0
+    push pointer 0
+    return
+function Flappy.resetPipe 0
+    push argument 0
+    pop pointer 0
+    push argument 1
+    push argument 2
+    push argument 3
+    push argument 4
+    call Pipe.reset 4
+    pop temp 0
+    push constant 0
+    return
+function Flappy.dispose 2
+    push argument 0
+    pop pointer 0
+    push this 1
+    call Bird.dispose 1
+    pop temp 0
+    push constant 0
+    pop local 0
+label Flappy_2
+    push local 0
+    push constant 8
+    lt
+    not
+    if-goto Flappy_3
+    push local 0
+    push this 3
+    add
+    pop pointer 1
+    push that 0
+    pop local 1
+    push local 1
+    push constant 0
+    eq
+    not
+    not
+    if-goto Flappy_5
+    push local 1
+    call Pipe.dispose 1
+    pop temp 0
+    goto Flappy_4
+label Flappy_5
+label Flappy_4
+    push local 0
+    push constant 1
+    add
+    pop local 0
+    goto Flappy_2
+label Flappy_3
+    push this 3
+    call Array.dispose 1
+    pop temp 0
+    push pointer 0
+    call Memory.deAlloc 1
+    pop temp 0
+    push constant 0
+    return
+function Flappy.newInstance 0
+    call Flappy.new 0
+    pop static 0
+    push constant 0
+    return
+function Flappy.getInstance 0
+    push static 0
+    return
+function Flappy.run 8
+    push argument 0
+    pop pointer 0
+    push constant 0
+    pop local 7
+label Flappy_6
+    push local 7
+    not
+    not
+    if-goto Flappy_7
+    call Start.run 0
+    pop temp 0
+    push constant 0
+    pop this 2
+    push constant 0
+    pop this 0
+    push constant 0
+    pop this 4
+    push constant 0
+    pop this 5
+    push this 1
+    call Bird.dispose 1
+    pop temp 0
+    call Bird.new 0
+    pop this 1
+    push pointer 0
+    push constant 0
+    push this 3
+    add
+    pop pointer 1
+    push that 0
+    push constant 1
+    push this 3
+    add
+    pop pointer 1
+    push that 0
+    call Flappy.pipeGenerator 3
+    pop temp 0
+    push pointer 0
+    push constant 0
+    push this 3
+    add
+    pop pointer 1
+    push that 0
+    push constant 1
+    neg
+    push constant 30
+    push constant 512
+    call Flappy.resetPipe 5
+    pop temp 0
+    push pointer 0
+    push constant 1
+    push this 3
+    add
+    pop pointer 1
+    push that 0
+    push constant 0
+    push constant 100
+    push constant 512
+    call Flappy.resetPipe 5
+    pop temp 0
+    push pointer 0
+    push constant 2
+    push this 3
+    add
+    pop pointer 1
+    push that 0
+    push constant 1
+    neg
+    push constant 30
+    push constant 100
+    neg
+    call Flappy.resetPipe 5
+    pop temp 0
+    push pointer 0
+    push constant 3
+    push this 3
+    add
+    pop pointer 1
+    push that 0
+    push constant 0
+    push constant 100
+    push constant 100
+    neg
+    call Flappy.resetPipe 5
+    pop temp 0
+    push pointer 0
+    push constant 4
+    push this 3
+    add
+    pop pointer 1
+    push that 0
+    push constant 1
+    neg
+    push constant 30
+    push constant 100
+    neg
+    call Flappy.resetPipe 5
+    pop temp 0
+    push pointer 0
+    push constant 5
+    push this 3
+    add
+    pop pointer 1
+    push that 0
+    push constant 0
+    push constant 100
+    push constant 100
+    neg
+    call Flappy.resetPipe 5
+    pop temp 0
+    push pointer 0
+    push constant 6
+    push this 3
+    add
+    pop pointer 1
+    push that 0
+    push constant 1
+    neg
+    push constant 30
+    push constant 100
+    neg
+    call Flappy.resetPipe 5
+    pop temp 0
+    push pointer 0
+    push constant 7
+    push this 3
+    add
+    pop pointer 1
+    push that 0
+    push constant 0
+    push constant 100
+    push constant 100
+    neg
+    call Flappy.resetPipe 5
+    pop temp 0
+    call Screen.clearScreen 0
+    pop temp 0
+label Flappy_8
+    push this 2
+    not
+    not
+    if-goto Flappy_9
+    call Keyboard.keyPressed 0
+    pop local 0
+    push local 0
+    push constant 0
+    eq
+    not
+    if-goto Flappy_11
+    push this 1
+    call Bird.hide 1
+    pop temp 0
+    push this 1
+    call Bird.move 1
+    pop temp 0
+    push this 1
+    call Bird.draw 1
+    pop temp 0
+    goto Flappy_10
+label Flappy_11
+label Flappy_10
+    push local 0
+    push constant 32
+    eq
+    not
+    if-goto Flappy_13
+    push constant 0
+    pop local 6
+label Flappy_14
+    push local 6
+    push constant 12
+    lt
+    not
+    if-goto Flappy_15
+    push this 1
+    call Bird.hide 1
+    pop temp 0
+    push this 1
+    push constant 2
+    neg
+    call Bird.setSpeed 2
+    pop temp 0
+    push this 1
+    call Bird.move 1
+    pop temp 0
+    push this 1
+    call Bird.draw 1
+    pop temp 0
+    push constant 5
+    call Sys.wait 1
+    pop temp 0
+    push local 6
+    push constant 1
+    add
+    pop local 6
+    goto Flappy_14
+label Flappy_15
+    push this 1
+    push constant 3
+    call Bird.setSpeed 2
+    pop temp 0
+    goto Flappy_12
+label Flappy_13
+label Flappy_12
+    push local 0
+    push constant 140
+    eq
+    not
+    if-goto Flappy_17
+    push constant 1
+    neg
+    pop this 2
+    goto Flappy_16
+label Flappy_17
+label Flappy_16
+    push constant 0
+    pop local 1
+label Flappy_18
+    push local 1
+    push constant 8
+    lt
+    not
+    if-goto Flappy_19
+    push local 1
+    push this 3
+    add
+    pop pointer 1
+    push that 0
+    pop local 2
+    push local 2
+    call Pipe.hide 1
+    pop temp 0
+    push local 2
+    call Pipe.move 1
+    pop temp 0
+    push local 2
+    call Pipe.draw 1
+    pop temp 0
+    push local 1
+    push constant 1
+    add
+    pop local 1
+    goto Flappy_18
+label Flappy_19
+    push this 4
+    push constant 2
+    call Math.multiply 2
+    push this 3
+    add
+    pop pointer 1
+    push that 0
+    pop local 3
+    push local 3
+    call Pipe.getLeft 1
+    push constant 343
+    lt
+    not
+    if-goto Flappy_21
+    push this 4
+    push constant 1
+    add
+    pop local 5
+    push local 5
+    push constant 4
+    eq
+    not
+    if-goto Flappy_23
+    push constant 0
+    pop local 5
+    goto Flappy_22
+label Flappy_23
+label Flappy_22
+    push pointer 0
+    push local 5
+    push constant 2
+    call Math.multiply 2
+    push this 3
+    add
+    pop pointer 1
+    push that 0
+    push local 5
+    push constant 2
+    call Math.multiply 2
+    push constant 1
+    add
+    push this 3
+    add
+    pop pointer 1
+    push that 0
+    call Flappy.pipeGenerator 3
+    pop temp 0
+    push local 5
+    pop this 4
+    goto Flappy_20
+label Flappy_21
+label Flappy_20
+    push this 5
+    push constant 2
+    call Math.multiply 2
+    push this 3
+    add
+    pop pointer 1
+    push that 0
+    pop local 2
+    push local 2
+    call Pipe.getLeft 1
+    push constant 16
+    lt
+    not
+    if-goto Flappy_25
+    push this 0
+    push constant 1
+    add
+    pop this 0
+    push this 5
+    push constant 1
+    add
+    pop this 5
+    push this 5
+    push constant 4
+    eq
+    not
+    if-goto Flappy_27
+    push constant 0
+    pop this 5
+    goto Flappy_26
+label Flappy_27
+label Flappy_26
+    goto Flappy_24
+label Flappy_25
+label Flappy_24
+    push this 1
+    call Bird.getTop 1
+    push constant 239
+    gt
+    push this 1
+    call Bird.getTop 1
+    push constant 0
+    lt
+    or
+    not
+    if-goto Flappy_29
+    push constant 1
+    neg
+    pop this 2
+    goto Flappy_28
+label Flappy_29
+    push this 5
+    push constant 2
+    call Math.multiply 2
+    push this 3
+    add
+    pop pointer 1
+    push that 0
+    pop local 2
+    push this 5
+    push constant 2
+    call Math.multiply 2
+    push constant 1
+    add
+    push this 3
+    add
+    pop pointer 1
+    push that 0
+    pop local 4
+    push local 2
+    call Pipe.getLeft 1
+    push constant 15
+    gt
+    push local 2
+    call Pipe.getLeft 1
+    push constant 48
+    lt
+    and
+    not
+    if-goto Flappy_31
+    push this 1
+    call Bird.getTop 1
+    push local 2
+    call Pipe.getBottom 1
+    lt
+    not
+    if-goto Flappy_33
+    push constant 1
+    neg
+    pop this 2
+    goto Flappy_32
+label Flappy_33
+label Flappy_32
+    push this 1
+    call Bird.getTop 1
+    push constant 22
+    add
+    push local 4
+    call Pipe.getTop 1
+    gt
+    not
+    if-goto Flappy_35
+    push constant 1
+    neg
+    pop this 2
+    goto Flappy_34
+label Flappy_35
+label Flappy_34
+    goto Flappy_30
+label Flappy_31
+label Flappy_30
+label Flappy_28
+    push constant 50
+    call Sys.wait 1
+    pop temp 0
+    goto Flappy_8
+label Flappy_9
+    push this 0
+    call GameOver.run 1
+    pop temp 0
+    goto Flappy_6
+label Flappy_7
+    push constant 0
+    return
+function Flappy.pipeGenerator 1
+    push argument 0
+    pop pointer 0
+    push this 1
+    call Bird.getTop 1
+    push constant 7
+    call Math.multiply 2
+    push constant 1
+    add
+    pop local 0
+label Flappy_36
+    push local 0
+    push constant 500
+    gt
+    not
+    if-goto Flappy_37
+    push local 0
+    push constant 500
+    sub
+    pop local 0
+    goto Flappy_36
+label Flappy_37
+    push local 0
+    push constant 5
+    lt
+    not
+    if-goto Flappy_39
+    push argument 1
+    push constant 1
+    neg
+    push constant 10
+    push constant 512
+    call Pipe.reset 4
+    pop temp 0
+    push argument 2
+    push constant 0
+    push constant 182
+    push constant 512
+    call Pipe.reset 4
+    pop temp 0
+    push constant 0
+    return
+    goto Flappy_38
+label Flappy_39
+label Flappy_38
+    push local 0
+    push constant 10
+    lt
+    not
+    if-goto Flappy_41
+    push argument 1
+    push constant 1
+    neg
+    push constant 180
+    push constant 512
+    call Pipe.reset 4
+    pop temp 0
+    push argument 2
+    push constant 0
+    push constant 12
+    push constant 512
+    call Pipe.reset 4
+    pop temp 0
+    push constant 0
+    return
+    goto Flappy_40
+label Flappy_41
+label Flappy_40
+    push local 0
+    push constant 15
+    lt
+    not
+    if-goto Flappy_43
+    push argument 1
+    push constant 1
+    neg
+    push constant 50
+    push constant 512
+    call Pipe.reset 4
+    pop temp 0
+    push argument 2
+    push constant 0
+    push constant 140
+    push constant 512
+    call Pipe.reset 4
+    pop temp 0
+    push constant 0
+    return
+    goto Flappy_42
+label Flappy_43
+label Flappy_42
+    push local 0
+    push constant 20
+    lt
+    not
+    if-goto Flappy_45
+    push argument 1
+    push constant 1
+    neg
+    push constant 140
+    push constant 512
+    call Pipe.reset 4
+    pop temp 0
+    push argument 2
+    push constant 0
+    push constant 50
+    push constant 512
+    call Pipe.reset 4
+    pop temp 0
+    push constant 0
+    return
+    goto Flappy_44
+label Flappy_45
+label Flappy_44
+    push local 0
+    push constant 25
+    lt
+    not
+    if-goto Flappy_47
+    push argument 1
+    push constant 1
+    neg
+    push constant 70
+    push constant 512
+    call Pipe.reset 4
+    pop temp 0
+    push argument 2
+    push constant 0
+    push constant 86
+    push constant 512
+    call Pipe.reset 4
+    pop temp 0
+    push constant 0
+    return
+    goto Flappy_46
+label Flappy_47
+label Flappy_46
+    push local 0
+    push constant 30
+    lt
+    not
+    if-goto Flappy_49
+    push argument 1
+    push constant 1
+    neg
+    push constant 100
+    push constant 512
+    call Pipe.reset 4
+    pop temp 0
+    push argument 2
+    push constant 0
+    push constant 90
+    push constant 512
+    call Pipe.reset 4
+    pop temp 0
+    push constant 0
+    return
+    goto Flappy_48
+label Flappy_49
+label Flappy_48
+    push local 0
+    push constant 35
+    lt
+    not
+    if-goto Flappy_51
+    push argument 1
+    push constant 1
+    neg
+    push constant 30
+    push constant 512
+    call Pipe.reset 4
+    pop temp 0
+    push argument 2
+    push constant 0
+    push constant 160
+    push constant 512
+    call Pipe.reset 4
+    pop temp 0
+    push constant 0
+    return
+    goto Flappy_50
+label Flappy_51
+label Flappy_50
+    push local 0
+    push constant 40
+    lt
+    not
+    if-goto Flappy_53
+    push argument 1
+    push constant 1
+    neg
+    push constant 160
+    push constant 512
+    call Pipe.reset 4
+    pop temp 0
+    push argument 2
+    push constant 0
+    push constant 30
+    push constant 512
+    call Pipe.reset 4
+    pop temp 0
+    push constant 0
+    return
+    goto Flappy_52
+label Flappy_53
+label Flappy_52
+    push local 0
+    push constant 45
+    lt
+    not
+    if-goto Flappy_55
+    push argument 1
+    push constant 1
+    neg
+    push constant 70
+    push constant 512
+    call Pipe.reset 4
+    pop temp 0
+    push argument 2
+    push constant 0
+    push constant 120
+    push constant 512
+    call Pipe.reset 4
+    pop temp 0
+    push constant 0
+    return
+    goto Flappy_54
+label Flappy_55
+label Flappy_54
+    push local 0
+    push constant 50
+    lt
+    not
+    if-goto Flappy_57
+    push argument 1
+    push constant 1
+    neg
+    push constant 100
+    push constant 512
+    call Pipe.reset 4
+    pop temp 0
+    push argument 2
+    push constant 0
+    push constant 56
+    push constant 512
+    call Pipe.reset 4
+    pop temp 0
+    push constant 0
+    return
+    goto Flappy_56
+label Flappy_57
+label Flappy_56
+    push local 0
+    push constant 55
+    lt
+    not
+    if-goto Flappy_59
+    push argument 1
+    push constant 1
+    neg
+    push constant 20
+    push constant 512
+    call Pipe.reset 4
+    pop temp 0
+    push argument 2
+    push constant 0
+    push constant 170
+    push constant 512
+    call Pipe.reset 4
+    pop temp 0
+    push constant 0
+    return
+    goto Flappy_58
+label Flappy_59
+label Flappy_58
+    push local 0
+    push constant 60
+    lt
+    not
+    if-goto Flappy_61
+    push argument 1
+    push constant 1
+    neg
+    push constant 170
+    push constant 512
+    call Pipe.reset 4
+    pop temp 0
+    push argument 2
+    push constant 0
+    push constant 20
+    push constant 512
+    call Pipe.reset 4
+    pop temp 0
+    push constant 0
+    return
+    goto Flappy_60
+label Flappy_61
+label Flappy_60
+    push local 0
+    push constant 65
+    lt
+    not
+    if-goto Flappy_63
+    push argument 1
+    push constant 1
+    neg
+    push constant 60
+    push constant 512
+    call Pipe.reset 4
+    pop temp 0
+    push argument 2
+    push constant 0
+    push constant 130
+    push constant 512
+    call Pipe.reset 4
+    pop temp 0
+    push constant 0
+    return
+    goto Flappy_62
+label Flappy_63
+label Flappy_62
+    push local 0
+    push constant 70
+    lt
+    not
+    if-goto Flappy_65
+    push argument 1
+    push constant 1
+    neg
+    push constant 130
+    push constant 512
+    call Pipe.reset 4
+    pop temp 0
+    push argument 2
+    push constant 0
+    push constant 60
+    push constant 512
+    call Pipe.reset 4
+    pop temp 0
+    push constant 0
+    return
+    goto Flappy_64
+label Flappy_65
+label Flappy_64
+    push local 0
+    push constant 75
+    lt
+    not
+    if-goto Flappy_67
+    push argument 1
+    push constant 1
+    neg
+    push constant 90
+    push constant 512
+    call Pipe.reset 4
+    pop temp 0
+    push argument 2
+    push constant 0
+    push constant 66
+    push constant 512
+    call Pipe.reset 4
+    pop temp 0
+    push constant 0
+    return
+    goto Flappy_66
+label Flappy_67
+label Flappy_66
+    push local 0
+    push constant 80
+    lt
+    not
+    if-goto Flappy_69
+    push argument 1
+    push constant 1
+    neg
+    push constant 80
+    push constant 512
+    call Pipe.reset 4
+    pop temp 0
+    push argument 2
+    push constant 0
+    push constant 110
+    push constant 512
+    call Pipe.reset 4
+    pop temp 0
+    push constant 0
+    return
+    goto Flappy_68
+label Flappy_69
+label Flappy_68
+    push local 0
+    push constant 85
+    lt
+    not
+    if-goto Flappy_71
+    push argument 1
+    push constant 1
+    neg
+    push constant 40
+    push constant 512
+    call Pipe.reset 4
+    pop temp 0
+    push argument 2
+    push constant 0
+    push constant 150
+    push constant 512
+    call Pipe.reset 4
+    pop temp 0
+    push constant 0
+    return
+    goto Flappy_70
+label Flappy_71
+label Flappy_70
+    push local 0
+    push constant 90
+    lt
+    not
+    if-goto Flappy_73
+    push argument 1
+    push constant 1
+    neg
+    push constant 150
+    push constant 512
+    call Pipe.reset 4
+    pop temp 0
+    push argument 2
+    push constant 0
+    push constant 40
+    push constant 512
+    call Pipe.reset 4
+    pop temp 0
+    push constant 0
+    return
+    goto Flappy_72
+label Flappy_73
+label Flappy_72
+    push local 0
+    push constant 95
+    lt
+    not
+    if-goto Flappy_75
+    push argument 1
+    push constant 1
+    neg
+    push constant 15
+    push constant 512
+    call Pipe.reset 4
+    pop temp 0
+    push argument 2
+    push constant 0
+    push constant 175
+    push constant 512
+    call Pipe.reset 4
+    pop temp 0
+    push constant 0
+    return
+    goto Flappy_74
+label Flappy_75
+label Flappy_74
+    push local 0
+    push constant 100
+    lt
+    not
+    if-goto Flappy_77
+    push argument 1
+    push constant 1
+    neg
+    push constant 150
+    push constant 512
+    call Pipe.reset 4
+    pop temp 0
+    push argument 2
+    push constant 0
+    push constant 6
+    push constant 512
+    call Pipe.reset 4
+    pop temp 0
+    push constant 0
+    return
+    goto Flappy_76
+label Flappy_77
+label Flappy_76
+    push local 0
+    push constant 105
+    lt
+    not
+    if-goto Flappy_79
+    push argument 1
+    push constant 1
+    neg
+    push constant 95
+    push constant 512
+    call Pipe.reset 4
+    pop temp 0
+    push argument 2
+    push constant 0
+    push constant 95
+    push constant 512
+    call Pipe.reset 4
+    pop temp 0
+    push constant 0
+    return
+    goto Flappy_78
+label Flappy_79
+label Flappy_78
+    push local 0
+    push constant 110
+    lt
+    not
+    if-goto Flappy_81
+    push argument 1
+    push constant 1
+    neg
+    push constant 55
+    push constant 512
+    call Pipe.reset 4
+    pop temp 0
+    push argument 2
+    push constant 0
+    push constant 135
+    push constant 512
+    call Pipe.reset 4
+    pop temp 0
+    push constant 0
+    return
+    goto Flappy_80
+label Flappy_81
+label Flappy_80
+    push local 0
+    push constant 115
+    lt
+    not
+    if-goto Flappy_83
+    push argument 1
+    push constant 1
+    neg
+    push constant 135
+    push constant 512
+    call Pipe.reset 4
+    pop temp 0
+    push argument 2
+    push constant 0
+    push constant 55
+    push constant 512
+    call Pipe.reset 4
+    pop temp 0
+    push constant 0
+    return
+    goto Flappy_82
+label Flappy_83
+label Flappy_82
+    push local 0
+    push constant 120
+    lt
+    not
+    if-goto Flappy_85
+    push argument 1
+    push constant 1
+    neg
+    push constant 25
+    push constant 512
+    call Pipe.reset 4
+    pop temp 0
+    push argument 2
+    push constant 0
+    push constant 165
+    push constant 512
+    call Pipe.reset 4
+    pop temp 0
+    push constant 0
+    return
+    goto Flappy_84
+label Flappy_85
+label Flappy_84
+    push local 0
+    push constant 125
+    lt
+    not
+    if-goto Flappy_87
+    push argument 1
+    push constant 1
+    neg
+    push constant 140
+    push constant 512
+    call Pipe.reset 4
+    pop temp 0
+    push argument 2
+    push constant 0
+    push constant 16
+    push constant 512
+    call Pipe.reset 4
+    pop temp 0
+    push constant 0
+    return
+    goto Flappy_86
+label Flappy_87
+label Flappy_86
+    push local 0
+    push constant 130
+    lt
+    not
+    if-goto Flappy_89
+    push argument 1
+    push constant 1
+    neg
+    push constant 75
+    push constant 512
+    call Pipe.reset 4
+    pop temp 0
+    push argument 2
+    push constant 0
+    push constant 115
+    push constant 512
+    call Pipe.reset 4
+    pop temp 0
+    push constant 0
+    return
+    goto Flappy_88
+label Flappy_89
+label Flappy_88
+    push local 0
+    push constant 135
+    lt
+    not
+    if-goto Flappy_91
+    push argument 1
+    push constant 1
+    neg
+    push constant 115
+    push constant 512
+    call Pipe.reset 4
+    pop temp 0
+    push argument 2
+    push constant 0
+    push constant 75
+    push constant 512
+    call Pipe.reset 4
+    pop temp 0
+    push constant 0
+    return
+    goto Flappy_90
+label Flappy_91
+label Flappy_90
+    push local 0
+    push constant 140
+    lt
+    not
+    if-goto Flappy_93
+    push argument 1
+    push constant 1
+    neg
+    push constant 45
+    push constant 512
+    call Pipe.reset 4
+    pop temp 0
+    push argument 2
+    push constant 0
+    push constant 145
+    push constant 512
+    call Pipe.reset 4
+    pop temp 0
+    push constant 0
+    return
+    goto Flappy_92
+label Flappy_93
+label Flappy_92
+    push local 0
+    push constant 145
+    lt
+    not
+    if-goto Flappy_95
+    push argument 1
+    push constant 1
+    neg
+    push constant 145
+    push constant 512
+    call Pipe.reset 4
+    pop temp 0
+    push argument 2
+    push constant 0
+    push constant 45
+    push constant 512
+    call Pipe.reset 4
+    pop temp 0
+    push constant 0
+    return
+    goto Flappy_94
+label Flappy_95
+label Flappy_94
+    push local 0
+    push constant 150
+    lt
+    not
+    if-goto Flappy_97
+    push argument 1
+    push constant 1
+    neg
+    push constant 105
+    push constant 512
+    call Pipe.reset 4
+    pop temp 0
+    push argument 2
+    push constant 0
+    push constant 51
+    push constant 512
+    call Pipe.reset 4
+    pop temp 0
+    push constant 0
+    return
+    goto Flappy_96
+label Flappy_97
+label Flappy_96
+    push local 0
+    push constant 155
+    lt
+    not
+    if-goto Flappy_99
+    push argument 1
+    push constant 1
+    neg
+    push constant 65
+    push constant 512
+    call Pipe.reset 4
+    pop temp 0
+    push argument 2
+    push constant 0
+    push constant 125
+    push constant 512
+    call Pipe.reset 4
+    pop temp 0
+    push constant 0
+    return
+    goto Flappy_98
+label Flappy_99
+label Flappy_98
+    push local 0
+    push constant 160
+    lt
+    not
+    if-goto Flappy_101
+    push argument 1
+    push constant 1
+    neg
+    push constant 18
+    push constant 512
+    call Pipe.reset 4
+    pop temp 0
+    push argument 2
+    push constant 0
+    push constant 172
+    push constant 512
+    call Pipe.reset 4
+    pop temp 0
+    push constant 0
+    return
+    goto Flappy_100
+label Flappy_101
+label Flappy_100
+    push local 0
+    push constant 165
+    lt
+    not
+    if-goto Flappy_103
+    push argument 1
+    push constant 1
+    neg
+    push constant 172
+    push constant 512
+    call Pipe.reset 4
+    pop temp 0
+    push argument 2
+    push constant 0
+    push constant 18
+    push constant 512
+    call Pipe.reset 4
+    pop temp 0
+    push constant 0
+    return
+    goto Flappy_102
+label Flappy_103
+label Flappy_102
+    push local 0
+    push constant 170
+    lt
+    not
+    if-goto Flappy_105
+    push argument 1
+    push constant 1
+    neg
+    push constant 85
+    push constant 512
+    call Pipe.reset 4
+    pop temp 0
+    push argument 2
+    push constant 0
+    push constant 105
+    push constant 512
+    call Pipe.reset 4
+    pop temp 0
+    push constant 0
+    return
+    goto Flappy_104
+label Flappy_105
+label Flappy_104
+    push local 0
+    push constant 175
+    lt
+    not
+    if-goto Flappy_107
+    push argument 1
+    push constant 1
+    neg
+    push constant 85
+    push constant 512
+    call Pipe.reset 4
+    pop temp 0
+    push argument 2
+    push constant 0
+    push constant 71
+    push constant 512
+    call Pipe.reset 4
+    pop temp 0
+    push constant 0
+    return
+    goto Flappy_106
+label Flappy_107
+label Flappy_106
+    push local 0
+    push constant 180
+    lt
+    not
+    if-goto Flappy_109
+    push argument 1
+    push constant 1
+    neg
+    push constant 35
+    push constant 512
+    call Pipe.reset 4
+    pop temp 0
+    push argument 2
+    push constant 0
+    push constant 155
+    push constant 512
+    call Pipe.reset 4
+    pop temp 0
+    push constant 0
+    return
+    goto Flappy_108
+label Flappy_109
+label Flappy_108
+    push local 0
+    push constant 185
+    lt
+    not
+    if-goto Flappy_111
+    push argument 1
+    push constant 1
+    neg
+    push constant 155
+    push constant 512
+    call Pipe.reset 4
+    pop temp 0
+    push argument 2
+    push constant 0
+    push constant 35
+    push constant 512
+    call Pipe.reset 4
+    pop temp 0
+    push constant 0
+    return
+    goto Flappy_110
+label Flappy_111
+label Flappy_110
+    push local 0
+    push constant 190
+    lt
+    not
+    if-goto Flappy_113
+    push argument 1
+    push constant 1
+    neg
+    push constant 12
+    push constant 512
+    call Pipe.reset 4
+    pop temp 0
+    push argument 2
+    push constant 0
+    push constant 178
+    push constant 512
+    call Pipe.reset 4
+    pop temp 0
+    push constant 0
+    return
+    goto Flappy_112
+label Flappy_113
+label Flappy_112
+    push local 0
+    push constant 195
+    lt
+    not
+    if-goto Flappy_115
+    push argument 1
+    push constant 1
+    neg
+    push constant 178
+    push constant 512
+    call Pipe.reset 4
+    pop temp 0
+    push argument 2
+    push constant 0
+    push constant 12
+    push constant 512
+    call Pipe.reset 4
+    pop temp 0
+    push constant 0
+    return
+    goto Flappy_114
+label Flappy_115
+label Flappy_114
+    push local 0
+    push constant 200
+    lt
+    not
+    if-goto Flappy_117
+    push argument 1
+    push constant 1
+    neg
+    push constant 38
+    push constant 512
+    call Pipe.reset 4
+    pop temp 0
+    push argument 2
+    push constant 0
+    push constant 118
+    push constant 512
+    call Pipe.reset 4
+    pop temp 0
+    push constant 0
+    return
+    goto Flappy_116
+label Flappy_117
+label Flappy_116
+    push local 0
+    push constant 205
+    lt
+    not
+    if-goto Flappy_119
+    push argument 1
+    push constant 1
+    neg
+    push constant 132
+    push constant 512
+    call Pipe.reset 4
+    pop temp 0
+    push argument 2
+    push constant 0
+    push constant 58
+    push constant 512
+    call Pipe.reset 4
+    pop temp 0
+    push constant 0
+    return
+    goto Flappy_118
+label Flappy_119
+label Flappy_118
+    push local 0
+    push constant 210
+    lt
+    not
+    if-goto Flappy_121
+    push argument 1
+    push constant 1
+    neg
+    push constant 92
+    push constant 512
+    call Pipe.reset 4
+    pop temp 0
+    push argument 2
+    push constant 0
+    push constant 98
+    push constant 512
+    call Pipe.reset 4
+    pop temp 0
+    push constant 0
+    return
+    goto Flappy_120
+label Flappy_121
+label Flappy_120
+    push local 0
+    push constant 215
+    lt
+    not
+    if-goto Flappy_123
+    push argument 1
+    push constant 1
+    neg
+    push constant 98
+    push constant 512
+    call Pipe.reset 4
+    pop temp 0
+    push argument 2
+    push constant 0
+    push constant 92
+    push constant 512
+    call Pipe.reset 4
+    pop temp 0
+    push constant 0
+    return
+    goto Flappy_122
+label Flappy_123
+label Flappy_122
+    push local 0
+    push constant 220
+    lt
+    not
+    if-goto Flappy_125
+    push argument 1
+    push constant 1
+    neg
+    push constant 22
+    push constant 512
+    call Pipe.reset 4
+    pop temp 0
+    push argument 2
+    push constant 0
+    push constant 168
+    push constant 512
+    call Pipe.reset 4
+    pop temp 0
+    push constant 0
+    return
+    goto Flappy_124
+label Flappy_125
+label Flappy_124
+    push local 0
+    push constant 225
+    lt
+    not
+    if-goto Flappy_127
+    push argument 1
+    push constant 1
+    neg
+    push constant 140
+    push constant 512
+    call Pipe.reset 4
+    pop temp 0
+    push argument 2
+    push constant 0
+    push constant 16
+    push constant 512
+    call Pipe.reset 4
+    pop temp 0
+    push constant 0
+    return
+    goto Flappy_126
+label Flappy_127
+label Flappy_126
+    push local 0
+    push constant 230
+    lt
+    not
+    if-goto Flappy_129
+    push argument 1
+    push constant 1
+    neg
+    push constant 68
+    push constant 512
+    call Pipe.reset 4
+    pop temp 0
+    push argument 2
+    push constant 0
+    push constant 122
+    push constant 512
+    call Pipe.reset 4
+    pop temp 0
+    push constant 0
+    return
+    goto Flappy_128
+label Flappy_129
+label Flappy_128
+    push local 0
+    push constant 235
+    lt
+    not
+    if-goto Flappy_131
+    push argument 1
+    push constant 1
+    neg
+    push constant 122
+    push constant 512
+    call Pipe.reset 4
+    pop temp 0
+    push argument 2
+    push constant 0
+    push constant 68
+    push constant 512
+    call Pipe.reset 4
+    pop temp 0
+    push constant 0
+    return
+    goto Flappy_130
+label Flappy_131
+label Flappy_130
+    push local 0
+    push constant 240
+    lt
+    not
+    if-goto Flappy_133
+    push argument 1
+    push constant 1
+    neg
+    push constant 42
+    push constant 512
+    call Pipe.reset 4
+    pop temp 0
+    push argument 2
+    push constant 0
+    push constant 148
+    push constant 512
+    call Pipe.reset 4
+    pop temp 0
+    push constant 0
+    return
+    goto Flappy_132
+label Flappy_133
+label Flappy_132
+    push local 0
+    push constant 245
+    lt
+    not
+    if-goto Flappy_135
+    push argument 1
+    push constant 1
+    neg
+    push constant 148
+    push constant 512
+    call Pipe.reset 4
+    pop temp 0
+    push argument 2
+    push constant 0
+    push constant 42
+    push constant 512
+    call Pipe.reset 4
+    pop temp 0
+    push constant 0
+    return
+    goto Flappy_134
+label Flappy_135
+label Flappy_134
+    push local 0
+    push constant 250
+    lt
+    not
+    if-goto Flappy_137
+    push argument 1
+    push constant 1
+    neg
+    push constant 90
+    push constant 512
+    call Pipe.reset 4
+    pop temp 0
+    push argument 2
+    push constant 0
+    push constant 66
+    push constant 512
+    call Pipe.reset 4
+    pop temp 0
+    push constant 0
+    return
+    goto Flappy_136
+label Flappy_137
+label Flappy_136
+    push local 0
+    push constant 255
+    lt
+    not
+    if-goto Flappy_139
+    push argument 1
+    push constant 1
+    neg
+    push constant 78
+    push constant 512
+    call Pipe.reset 4
+    pop temp 0
+    push argument 2
+    push constant 0
+    push constant 112
+    push constant 512
+    call Pipe.reset 4
+    pop temp 0
+    push constant 0
+    return
+    goto Flappy_138
+label Flappy_139
+label Flappy_138
+    push local 0
+    push constant 260
+    lt
+    not
+    if-goto Flappy_141
+    push argument 1
+    push constant 1
+    neg
+    push constant 14
+    push constant 512
+    call Pipe.reset 4
+    pop temp 0
+    push argument 2
+    push constant 0
+    push constant 176
+    push constant 512
+    call Pipe.reset 4
+    pop temp 0
+    push constant 0
+    return
+    goto Flappy_140
+label Flappy_141
+label Flappy_140
+    push local 0
+    push constant 265
+    lt
+    not
+    if-goto Flappy_143
+    push argument 1
+    push constant 1
+    neg
+    push constant 176
+    push constant 512
+    call Pipe.reset 4
+    pop temp 0
+    push argument 2
+    push constant 0
+    push constant 14
+    push constant 512
+    call Pipe.reset 4
+    pop temp 0
+    push constant 0
+    return
+    goto Flappy_142
+label Flappy_143
+label Flappy_142
+    push local 0
+    push constant 270
+    lt
+    not
+    if-goto Flappy_145
+    push argument 1
+    push constant 1
+    neg
+    push constant 52
+    push constant 512
+    call Pipe.reset 4
+    pop temp 0
+    push argument 2
+    push constant 0
+    push constant 138
+    push constant 512
+    call Pipe.reset 4
+    pop temp 0
+    push constant 0
+    return
+    goto Flappy_144
+label Flappy_145
+label Flappy_144
+    push local 0
+    push constant 275
+    lt
+    not
+    if-goto Flappy_147
+    push argument 1
+    push constant 1
+    neg
+    push constant 118
+    push constant 512
+    call Pipe.reset 4
+    pop temp 0
+    push argument 2
+    push constant 0
+    push constant 38
+    push constant 512
+    call Pipe.reset 4
+    pop temp 0
+    push constant 0
+    return
+    goto Flappy_146
+label Flappy_147
+label Flappy_146
+    push local 0
+    push constant 280
+    lt
+    not
+    if-goto Flappy_149
+    push argument 1
+    push constant 1
+    neg
+    push constant 88
+    push constant 512
+    call Pipe.reset 4
+    pop temp 0
+    push argument 2
+    push constant 0
+    push constant 102
+    push constant 512
+    call Pipe.reset 4
+    pop temp 0
+    push constant 0
+    return
+    goto Flappy_148
+label Flappy_149
+label Flappy_148
+    push local 0
+    push constant 285
+    lt
+    not
+    if-goto Flappy_151
+    push argument 1
+    push constant 1
+    neg
+    push constant 102
+    push constant 512
+    call Pipe.reset 4
+    pop temp 0
+    push argument 2
+    push constant 0
+    push constant 88
+    push constant 512
+    call Pipe.reset 4
+    pop temp 0
+    push constant 0
+    return
+    goto Flappy_150
+label Flappy_151
+label Flappy_150
+    push local 0
+    push constant 290
+    lt
+    not
+    if-goto Flappy_153
+    push argument 1
+    push constant 1
+    neg
+    push constant 32
+    push constant 512
+    call Pipe.reset 4
+    pop temp 0
+    push argument 2
+    push constant 0
+    push constant 158
+    push constant 512
+    call Pipe.reset 4
+    pop temp 0
+    push constant 0
+    return
+    goto Flappy_152
+label Flappy_153
+label Flappy_152
+    push local 0
+    push constant 295
+    lt
+    not
+    if-goto Flappy_155
+    push argument 1
+    push constant 1
+    neg
+    push constant 158
+    push constant 512
+    call Pipe.reset 4
+    pop temp 0
+    push argument 2
+    push constant 0
+    push constant 32
+    push constant 512
+    call Pipe.reset 4
+    pop temp 0
+    push constant 0
+    return
+    goto Flappy_154
+label Flappy_155
+label Flappy_154
+    push local 0
+    push constant 300
+    lt
+    not
+    if-goto Flappy_157
+    push argument 1
+    push constant 1
+    neg
+    push constant 108
+    push constant 512
+    call Pipe.reset 4
+    pop temp 0
+    push argument 2
+    push constant 0
+    push constant 48
+    push constant 512
+    call Pipe.reset 4
+    pop temp 0
+    push constant 0
+    return
+    goto Flappy_156
+label Flappy_157
+label Flappy_156
+    push local 0
+    push constant 305
+    lt
+    not
+    if-goto Flappy_159
+    push argument 1
+    push constant 1
+    neg
+    push constant 62
+    push constant 512
+    call Pipe.reset 4
+    pop temp 0
+    push argument 2
+    push constant 0
+    push constant 128
+    push constant 512
+    call Pipe.reset 4
+    pop temp 0
+    push constant 0
+    return
+    goto Flappy_158
+label Flappy_159
+label Flappy_158
+    push local 0
+    push constant 310
+    lt
+    not
+    if-goto Flappy_161
+    push argument 1
+    push constant 1
+    neg
+    push constant 28
+    push constant 512
+    call Pipe.reset 4
+    pop temp 0
+    push argument 2
+    push constant 0
+    push constant 162
+    push constant 512
+    call Pipe.reset 4
+    pop temp 0
+    push constant 0
+    return
+    goto Flappy_160
+label Flappy_161
+label Flappy_160
+    push local 0
+    push constant 315
+    lt
+    not
+    if-goto Flappy_163
+    push argument 1
+    push constant 1
+    neg
+    push constant 162
+    push constant 512
+    call Pipe.reset 4
+    pop temp 0
+    push argument 2
+    push constant 0
+    push constant 28
+    push constant 512
+    call Pipe.reset 4
+    pop temp 0
+    push constant 0
+    return
+    goto Flappy_162
+label Flappy_163
+label Flappy_162
+    push local 0
+    push constant 320
+    lt
+    not
+    if-goto Flappy_165
+    push argument 1
+    push constant 1
+    neg
+    push constant 72
+    push constant 512
+    call Pipe.reset 4
+    pop temp 0
+    push argument 2
+    push constant 0
+    push constant 118
+    push constant 512
+    call Pipe.reset 4
+    pop temp 0
+    push constant 0
+    return
+    goto Flappy_164
+label Flappy_165
+label Flappy_164
+    push local 0
+    push constant 325
+    lt
+    not
+    if-goto Flappy_167
+    push argument 1
+    push constant 1
+    neg
+    push constant 98
+    push constant 512
+    call Pipe.reset 4
+    pop temp 0
+    push argument 2
+    push constant 0
+    push constant 58
+    push constant 512
+    call Pipe.reset 4
+    pop temp 0
+    push constant 0
+    return
+    goto Flappy_166
+label Flappy_167
+label Flappy_166
+    push local 0
+    push constant 330
+    lt
+    not
+    if-goto Flappy_169
+    push argument 1
+    push constant 1
+    neg
+    push constant 48
+    push constant 512
+    call Pipe.reset 4
+    pop temp 0
+    push argument 2
+    push constant 0
+    push constant 142
+    push constant 512
+    call Pipe.reset 4
+    pop temp 0
+    push constant 0
+    return
+    goto Flappy_168
+label Flappy_169
+label Flappy_168
+    push local 0
+    push constant 335
+    lt
+    not
+    if-goto Flappy_171
+    push argument 1
+    push constant 1
+    neg
+    push constant 142
+    push constant 512
+    call Pipe.reset 4
+    pop temp 0
+    push argument 2
+    push constant 0
+    push constant 48
+    push constant 512
+    call Pipe.reset 4
+    pop temp 0
+    push constant 0
+    return
+    goto Flappy_170
+label Flappy_171
+label Flappy_170
+    push local 0
+    push constant 340
+    lt
+    not
+    if-goto Flappy_173
+    push argument 1
+    push constant 1
+    neg
+    push constant 108
+    push constant 512
+    call Pipe.reset 4
+    pop temp 0
+    push argument 2
+    push constant 0
+    push constant 82
+    push constant 512
+    call Pipe.reset 4
+    pop temp 0
+    push constant 0
+    return
+    goto Flappy_172
+label Flappy_173
+label Flappy_172
+    push local 0
+    push constant 345
+    lt
+    not
+    if-goto Flappy_175
+    push argument 1
+    push constant 1
+    neg
+    push constant 82
+    push constant 512
+    call Pipe.reset 4
+    pop temp 0
+    push argument 2
+    push constant 0
+    push constant 108
+    push constant 512
+    call Pipe.reset 4
+    pop temp 0
+    push constant 0
+    return
+    goto Flappy_174
+label Flappy_175
+label Flappy_174
+    push local 0
+    push constant 350
+    lt
+    not
+    if-goto Flappy_177
+    push argument 1
+    push constant 1
+    neg
+    push constant 6
+    push constant 512
+    call Pipe.reset 4
+    pop temp 0
+    push argument 2
+    push constant 0
+    push constant 150
+    push constant 512
+    call Pipe.reset 4
+    pop temp 0
+    push constant 0
+    return
+    goto Flappy_176
+label Flappy_177
+label Flappy_176
+    push local 0
+    push constant 355
+    lt
+    not
+    if-goto Flappy_179
+    push argument 1
+    push constant 1
+    neg
+    push constant 174
+    push constant 512
+    call Pipe.reset 4
+    pop temp 0
+    push argument 2
+    push constant 0
+    push constant 16
+    push constant 512
+    call Pipe.reset 4
+    pop temp 0
+    push constant 0
+    return
+    goto Flappy_178
+label Flappy_179
+label Flappy_178
+    push local 0
+    push constant 360
+    lt
+    not
+    if-goto Flappy_181
+    push argument 1
+    push constant 1
+    neg
+    push constant 56
+    push constant 512
+    call Pipe.reset 4
+    pop temp 0
+    push argument 2
+    push constant 0
+    push constant 134
+    push constant 512
+    call Pipe.reset 4
+    pop temp 0
+    push constant 0
+    return
+    goto Flappy_180
+label Flappy_181
+label Flappy_180
+    push local 0
+    push constant 365
+    lt
+    not
+    if-goto Flappy_183
+    push argument 1
+    push constant 1
+    neg
+    push constant 134
+    push constant 512
+    call Pipe.reset 4
+    pop temp 0
+    push argument 2
+    push constant 0
+    push constant 56
+    push constant 512
+    call Pipe.reset 4
+    pop temp 0
+    push constant 0
+    return
+    goto Flappy_182
+label Flappy_183
+label Flappy_182
+    push local 0
+    push constant 370
+    lt
+    not
+    if-goto Flappy_185
+    push argument 1
+    push constant 1
+    neg
+    push constant 96
+    push constant 512
+    call Pipe.reset 4
+    pop temp 0
+    push argument 2
+    push constant 0
+    push constant 94
+    push constant 512
+    call Pipe.reset 4
+    pop temp 0
+    push constant 0
+    return
+    goto Flappy_184
+label Flappy_185
+label Flappy_184
+    push local 0
+    push constant 375
+    lt
+    not
+    if-goto Flappy_187
+    push argument 1
+    push constant 1
+    neg
+    push constant 74
+    push constant 512
+    call Pipe.reset 4
+    pop temp 0
+    push argument 2
+    push constant 0
+    push constant 82
+    push constant 512
+    call Pipe.reset 4
+    pop temp 0
+    push constant 0
+    return
+    goto Flappy_186
+label Flappy_187
+label Flappy_186
+    push local 0
+    push constant 380
+    lt
+    not
+    if-goto Flappy_189
+    push argument 1
+    push constant 1
+    neg
+    push constant 26
+    push constant 512
+    call Pipe.reset 4
+    pop temp 0
+    push argument 2
+    push constant 0
+    push constant 164
+    push constant 512
+    call Pipe.reset 4
+    pop temp 0
+    push constant 0
+    return
+    goto Flappy_188
+label Flappy_189
+label Flappy_188
+    push local 0
+    push constant 385
+    lt
+    not
+    if-goto Flappy_191
+    push argument 1
+    push constant 1
+    neg
+    push constant 164
+    push constant 512
+    call Pipe.reset 4
+    pop temp 0
+    push argument 2
+    push constant 0
+    push constant 26
+    push constant 512
+    call Pipe.reset 4
+    pop temp 0
+    push constant 0
+    return
+    goto Flappy_190
+label Flappy_191
+label Flappy_190
+    push local 0
+    push constant 390
+    lt
+    not
+    if-goto Flappy_193
+    push argument 1
+    push constant 1
+    neg
+    push constant 66
+    push constant 512
+    call Pipe.reset 4
+    pop temp 0
+    push argument 2
+    push constant 0
+    push constant 124
+    push constant 512
+    call Pipe.reset 4
+    pop temp 0
+    push constant 0
+    return
+    goto Flappy_192
+label Flappy_193
+label Flappy_192
+    push local 0
+    push constant 395
+    lt
+    not
+    if-goto Flappy_195
+    push argument 1
+    push constant 1
+    neg
+    push constant 124
+    push constant 512
+    call Pipe.reset 4
+    pop temp 0
+    push argument 2
+    push constant 0
+    push constant 66
+    push constant 512
+    call Pipe.reset 4
+    pop temp 0
+    push constant 0
+    return
+    goto Flappy_194
+label Flappy_195
+label Flappy_194
+    push local 0
+    push constant 400
+    lt
+    not
+    if-goto Flappy_197
+    push argument 1
+    push constant 1
+    neg
+    push constant 18
+    push constant 512
+    call Pipe.reset 4
+    pop temp 0
+    push argument 2
+    push constant 0
+    push constant 138
+    push constant 512
+    call Pipe.reset 4
+    pop temp 0
+    push constant 0
+    return
+    goto Flappy_196
+label Flappy_197
+label Flappy_196
+    push local 0
+    push constant 405
+    lt
+    not
+    if-goto Flappy_199
+    push argument 1
+    push constant 1
+    neg
+    push constant 152
+    push constant 512
+    call Pipe.reset 4
+    pop temp 0
+    push argument 2
+    push constant 0
+    push constant 38
+    push constant 512
+    call Pipe.reset 4
+    pop temp 0
+    push constant 0
+    return
+    goto Flappy_198
+label Flappy_199
+label Flappy_198
+    push local 0
+    push constant 410
+    lt
+    not
+    if-goto Flappy_201
+    push argument 1
+    push constant 1
+    neg
+    push constant 114
+    push constant 512
+    call Pipe.reset 4
+    pop temp 0
+    push argument 2
+    push constant 0
+    push constant 76
+    push constant 512
+    call Pipe.reset 4
+    pop temp 0
+    push constant 0
+    return
+    goto Flappy_200
+label Flappy_201
+label Flappy_200
+    push local 0
+    push constant 415
+    lt
+    not
+    if-goto Flappy_203
+    push argument 1
+    push constant 1
+    neg
+    push constant 76
+    push constant 512
+    call Pipe.reset 4
+    pop temp 0
+    push argument 2
+    push constant 0
+    push constant 114
+    push constant 512
+    call Pipe.reset 4
+    pop temp 0
+    push constant 0
+    return
+    goto Flappy_202
+label Flappy_203
+label Flappy_202
+    push local 0
+    push constant 420
+    lt
+    not
+    if-goto Flappy_205
+    push argument 1
+    push constant 1
+    neg
+    push constant 13
+    push constant 512
+    call Pipe.reset 4
+    pop temp 0
+    push argument 2
+    push constant 0
+    push constant 177
+    push constant 512
+    call Pipe.reset 4
+    pop temp 0
+    push constant 0
+    return
+    goto Flappy_204
+label Flappy_205
+label Flappy_204
+    push local 0
+    push constant 425
+    lt
+    not
+    if-goto Flappy_207
+    push argument 1
+    push constant 1
+    neg
+    push constant 150
+    push constant 512
+    call Pipe.reset 4
+    pop temp 0
+    push argument 2
+    push constant 0
+    push constant 6
+    push constant 512
+    call Pipe.reset 4
+    pop temp 0
+    push constant 0
+    return
+    goto Flappy_206
+label Flappy_207
+label Flappy_206
+    push local 0
+    push constant 430
+    lt
+    not
+    if-goto Flappy_209
+    push argument 1
+    push constant 1
+    neg
+    push constant 53
+    push constant 512
+    call Pipe.reset 4
+    pop temp 0
+    push argument 2
+    push constant 0
+    push constant 137
+    push constant 512
+    call Pipe.reset 4
+    pop temp 0
+    push constant 0
+    return
+    goto Flappy_208
+label Flappy_209
+label Flappy_208
+    push local 0
+    push constant 435
+    lt
+    not
+    if-goto Flappy_211
+    push argument 1
+    push constant 1
+    neg
+    push constant 137
+    push constant 512
+    call Pipe.reset 4
+    pop temp 0
+    push argument 2
+    push constant 0
+    push constant 53
+    push constant 512
+    call Pipe.reset 4
+    pop temp 0
+    push constant 0
+    return
+    goto Flappy_210
+label Flappy_211
+label Flappy_210
+    push local 0
+    push constant 440
+    lt
+    not
+    if-goto Flappy_213
+    push argument 1
+    push constant 1
+    neg
+    push constant 87
+    push constant 512
+    call Pipe.reset 4
+    pop temp 0
+    push argument 2
+    push constant 0
+    push constant 103
+    push constant 512
+    call Pipe.reset 4
+    pop temp 0
+    push constant 0
+    return
+    goto Flappy_212
+label Flappy_213
+label Flappy_212
+    push local 0
+    push constant 445
+    lt
+    not
+    if-goto Flappy_215
+    push argument 1
+    push constant 1
+    neg
+    push constant 103
+    push constant 512
+    call Pipe.reset 4
+    pop temp 0
+    push argument 2
+    push constant 0
+    push constant 87
+    push constant 512
+    call Pipe.reset 4
+    pop temp 0
+    push constant 0
+    return
+    goto Flappy_214
+label Flappy_215
+label Flappy_214
+    push local 0
+    push constant 450
+    lt
+    not
+    if-goto Flappy_217
+    push argument 1
+    push constant 1
+    neg
+    push constant 13
+    push constant 512
+    call Pipe.reset 4
+    pop temp 0
+    push argument 2
+    push constant 0
+    push constant 143
+    push constant 512
+    call Pipe.reset 4
+    pop temp 0
+    push constant 0
+    return
+    goto Flappy_216
+label Flappy_217
+label Flappy_216
+    push local 0
+    push constant 455
+    lt
+    not
+    if-goto Flappy_219
+    push argument 1
+    push constant 1
+    neg
+    push constant 157
+    push constant 512
+    call Pipe.reset 4
+    pop temp 0
+    push argument 2
+    push constant 0
+    push constant 33
+    push constant 512
+    call Pipe.reset 4
+    pop temp 0
+    push constant 0
+    return
+    goto Flappy_218
+label Flappy_219
+label Flappy_218
+    push local 0
+    push constant 460
+    lt
+    not
+    if-goto Flappy_221
+    push argument 1
+    push constant 1
+    neg
+    push constant 123
+    push constant 512
+    call Pipe.reset 4
+    pop temp 0
+    push argument 2
+    push constant 0
+    push constant 67
+    push constant 512
+    call Pipe.reset 4
+    pop temp 0
+    push constant 0
+    return
+    goto Flappy_220
+label Flappy_221
+label Flappy_220
+    push local 0
+    push constant 465
+    lt
+    not
+    if-goto Flappy_223
+    push argument 1
+    push constant 1
+    neg
+    push constant 67
+    push constant 512
+    call Pipe.reset 4
+    pop temp 0
+    push argument 2
+    push constant 0
+    push constant 123
+    push constant 512
+    call Pipe.reset 4
+    pop temp 0
+    push constant 0
+    return
+    goto Flappy_222
+label Flappy_223
+label Flappy_222
+    push local 0
+    push constant 470
+    lt
+    not
+    if-goto Flappy_225
+    push argument 1
+    push constant 1
+    neg
+    push constant 23
+    push constant 512
+    call Pipe.reset 4
+    pop temp 0
+    push argument 2
+    push constant 0
+    push constant 167
+    push constant 512
+    call Pipe.reset 4
+    pop temp 0
+    push constant 0
+    return
+    goto Flappy_224
+label Flappy_225
+label Flappy_224
+    push local 0
+    push constant 475
+    lt
+    not
+    if-goto Flappy_227
+    push argument 1
+    push constant 1
+    neg
+    push constant 140
+    push constant 512
+    call Pipe.reset 4
+    pop temp 0
+    push argument 2
+    push constant 0
+    push constant 16
+    push constant 512
+    call Pipe.reset 4
+    pop temp 0
+    push constant 0
+    return
+    goto Flappy_226
+label Flappy_227
+label Flappy_226
+    push local 0
+    push constant 480
+    lt
+    not
+    if-goto Flappy_229
+    push argument 1
+    push constant 1
+    neg
+    push constant 73
+    push constant 512
+    call Pipe.reset 4
+    pop temp 0
+    push argument 2
+    push constant 0
+    push constant 117
+    push constant 512
+    call Pipe.reset 4
+    pop temp 0
+    push constant 0
+    return
+    goto Flappy_228
+label Flappy_229
+label Flappy_228
+    push local 0
+    push constant 485
+    lt
+    not
+    if-goto Flappy_231
+    push argument 1
+    push constant 1
+    neg
+    push constant 117
+    push constant 512
+    call Pipe.reset 4
+    pop temp 0
+    push argument 2
+    push constant 0
+    push constant 73
+    push constant 512
+    call Pipe.reset 4
+    pop temp 0
+    push constant 0
+    return
+    goto Flappy_230
+label Flappy_231
+label Flappy_230
+    push local 0
+    push constant 490
+    lt
+    not
+    if-goto Flappy_233
+    push argument 1
+    push constant 1
+    neg
+    push constant 43
+    push constant 512
+    call Pipe.reset 4
+    pop temp 0
+    push argument 2
+    push constant 0
+    push constant 147
+    push constant 512
+    call Pipe.reset 4
+    pop temp 0
+    push constant 0
+    return
+    goto Flappy_232
+label Flappy_233
+label Flappy_232
+    push local 0
+    push constant 495
+    lt
+    not
+    if-goto Flappy_235
+    push argument 1
+    push constant 1
+    neg
+    push constant 127
+    push constant 512
+    call Pipe.reset 4
+    pop temp 0
+    push argument 2
+    push constant 0
+    push constant 29
+    push constant 512
+    call Pipe.reset 4
+    pop temp 0
+    push constant 0
+    return
+    goto Flappy_234
+label Flappy_235
+label Flappy_234
+    push argument 1
+    push constant 1
+    neg
+    push constant 107
+    push constant 512
+    call Pipe.reset 4
+    pop temp 0
+    push argument 2
+    push constant 0
+    push constant 83
+    push constant 512
+    call Pipe.reset 4
+    pop temp 0
+    push constant 0
+    return

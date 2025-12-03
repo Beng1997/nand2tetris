@@ -1,0 +1,60 @@
+/** Represents the a complex number type and related operations. */
+class Complex {
+    field
+    int real, imaginary;
+
+    /** Constructs a complex number from the given real and imaginary parts. */
+    constructor Complex new(int x, int y) {
+      let real = x;
+      let imaginary = y;
+      return this;
+   }
+
+    /** Accessors. */
+
+    method int getReal() { return real; }
+
+    method int getImaginary() { return imaginary; }
+
+   /** Returns the sum of this complex number and the other one. */
+   method Complex plus(Complex other) {
+      var Complex sum;
+      let sum = Complex.new(real + other.getReal(), imaginary + other.getImaginary());
+      return sum;
+   }
+
+   /** Returns the difference of this complex number and the other one. */
+   method Complex minus(Complex other) {
+      var Complex diff;
+      let diff = Complex.new(real - other.getReal(), imaginary - other.getImaginary());
+      return diff;
+   }
+
+   /** Returns the product of this complex number and the other one.
+    *  Formula: (a+bi)(c+di) = (ac-bd) + (ad+bc)i */
+   method Complex times(Complex other) {
+      var int real_part;
+      var int imaginary_part;
+      let real_part = Math.multiply(real, other.getReal()) - Math.multiply(imaginary, other.getImaginary());
+      let imaginary_part = Math.multiply(real, other.getImaginary()) + Math.multiply(imaginary, other.getReal());
+      return Complex.new(real_part, imaginary_part);
+   }
+
+    /** Disposes this complex number. */
+
+   method void dispose() {
+      do Memory.deAlloc(this);  // uses an OS routine to recycle the memory held by the object
+      return;
+   }
+
+    /** Prints this complex number in the format a+bi. */
+    method void print() {
+      do Output.printInt(real);
+      do Output.printString("+");
+      do Output.printInt(imaginary);
+      do Output.printString("i");
+      do Output.println();
+      return;
+   }
+
+}

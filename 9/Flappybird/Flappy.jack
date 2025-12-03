@@ -1,0 +1,293 @@
+class Flappy {
+    static Flappy instance;
+    field int score;
+    field Bird bird;
+    field boolean gameover;
+    field Array pipes; // Stores 8 pipes (4 pairs)
+    field int lastPairIndex; // Index of the last spawned pair (0..3)
+    field int firstPairIndex;
+
+    constructor Flappy new () {
+        var int i;
+        do Screen.clearScreen();
+        let score = 0;
+        let gameover = false;
+        let bird = Bird.new();
+        
+        let pipes = Array.new(8);
+        
+        // Initialize all pipes off-screen (-100)
+        let i = 0;
+        while (i < 4) {
+            let pipes[i*2] = Pipe.new(true, 50); // Upper
+            do resetPipe(pipes[i*2], true, 50, -100);
+            
+            let pipes[i*2+1] = Pipe.new(false, 50); // Lower
+            do resetPipe(pipes[i*2+1], false, 50, -100);
+            
+            let i = i + 1;
+        }
+        
+        // Spawn first pair at 512
+        let lastPairIndex = 0;
+        let firstPairIndex = 0;
+        do pipeGenerator(pipes[0], pipes[1]);
+        do resetPipe(pipes[0], true, 30, 512); // Override pos to 512
+        do resetPipe(pipes[1], false, 100, 512);
+        // a generic start scenario        
+        return this;
+    }
+    
+    // Helper to cast and reset
+    method void resetPipe(Pipe p, boolean upper, int len, int left) {
+        do p.reset(upper, len, left);
+        return;
+    }
+
+    method void dispose() {
+        var int i;
+        var Pipe p;
+        do bird.dispose();
+        
+        let i = 0;
+        while (i < 8) {
+            let p = pipes[i];
+            if (~(p = null)) { do p.dispose(); }
+            let i = i + 1;
+        }
+        do pipes.dispose();
+        
+        do Memory.deAlloc(this);
+        return;
+    }
+
+    function void newInstance() {
+        let instance = Flappy.new();
+        return;
+    }
+
+    function Flappy getInstance() {
+        return instance;
+    }
+ 
+    method void run() {
+        var char key;
+        var int i;
+        var Pipe p;
+        var Pipe lastP;
+        var Pipe p2;
+        var int nextIndex;
+        var int s;
+        var boolean exit;
+        
+        let exit = false;
+        
+        while (~exit) {
+            // 1. Start Screen
+            do Start.run();
+            
+            // 2. Reset Game State
+            let gameover = false;
+            let score = 0;
+            let lastPairIndex = 0;
+            let firstPairIndex = 0;
+            do bird.dispose(); // Dispose old bird
+            let bird = Bird.new(); // Create new bird
+            
+            // Reset pipes
+            do pipeGenerator(pipes[0], pipes[1]);
+            do resetPipe(pipes[0], true, 30, 512); 
+            do resetPipe(pipes[1], false, 100, 512);
+            
+            do resetPipe(pipes[2], true, 30, -100);
+            do resetPipe(pipes[3], false, 100, -100);
+            do resetPipe(pipes[4], true, 30, -100);
+            do resetPipe(pipes[5], false, 100, -100);
+            do resetPipe(pipes[6], true, 30, -100);
+            do resetPipe(pipes[7], false, 100, -100);
+            
+            do Screen.clearScreen();
+            
+            // 3. Game Loop
+            while (~gameover) {
+                let key = Keyboard.keyPressed();
+                
+                if (key = 0) {
+                    do bird.hide();
+                    do bird.move();
+                    do bird.draw();
+                }
+                if (key = 32) {
+                    let s = 0;
+                    while (s < 12) {
+                        do bird.hide();
+                        do bird.setSpeed(-2);
+                        do bird.move();
+                        do bird.draw();
+                        do Sys.wait(5);
+                        let s = s + 1;
+                    }
+                    do bird.setSpeed(3);
+                        
+                }
+                if (key = 140) { let gameover = true; }
+    
+                // Move and Draw all pipes
+                let i = 0;
+                while (i < 8) {
+                    let p = pipes[i];
+                    do p.hide();
+                    do p.move();
+                    do p.draw();
+                    let i = i + 1;
+                }
+                
+                // Check for spawning new pipe
+                let lastP = pipes[lastPairIndex * 2];
+                if (lastP.getLeft() < 343) { 
+                    let nextIndex = lastPairIndex + 1;
+                    if (nextIndex = 4) { let nextIndex = 0; }
+                    do pipeGenerator(pipes[nextIndex * 2], pipes[nextIndex * 2 + 1]);
+                    let lastPairIndex = nextIndex;
+                }
+                
+                // Update firstPairIndex and Score
+                let p = pipes[firstPairIndex * 2];
+                if (p.getLeft() < 16) {
+                    let score = score + 1;
+                    let firstPairIndex = firstPairIndex + 1;
+                    if (firstPairIndex = 4) { let firstPairIndex = 0; }
+                }
+    
+                // Collision detection
+                if ((bird.getTop() > 239) | (bird.getTop() < 0)) {
+                    let gameover = true;
+                } else {
+                    // Pipe Collision
+                    let p = pipes[firstPairIndex * 2]; // Upper
+                    let p2 = pipes[firstPairIndex * 2 + 1]; // Lower
+                    
+                    if ((p.getLeft() > 15) & (p.getLeft() < 48)) {
+                        if ((bird.getTop()) < p.getBottom()) { let gameover = true; }
+                        if ((bird.getTop() + 22) > p2.getTop()) { let gameover = true; }
+                    }
+                }
+                
+                do Sys.wait(50);
+            }
+            
+            // 4. Game Over Screen
+            do GameOver.run(score);
+        }
+        return;
+    }
+
+    method void pipeGenerator(Pipe p1, Pipe p2) {
+        var int pipeScenario;
+        let pipeScenario = (bird.getTop() * 7) + 1;
+        while (pipeScenario > 500) { let pipeScenario = pipeScenario - 500; }
+        
+        if (pipeScenario < 5) { do p1.reset(true, 10, 512); do p2.reset(false, 182, 512); return; }
+        if (pipeScenario < 10) { do p1.reset(true, 180, 512); do p2.reset(false, 12, 512); return; }
+        if (pipeScenario < 15) { do p1.reset(true, 50, 512); do p2.reset(false, 140, 512); return; }
+        if (pipeScenario < 20) { do p1.reset(true, 140, 512); do p2.reset(false, 50, 512); return; }
+        if (pipeScenario < 25) { do p1.reset(true, 70, 512); do p2.reset(false, 86, 512); return; }
+        if (pipeScenario < 30) { do p1.reset(true, 100, 512); do p2.reset(false, 90, 512); return; }
+        if (pipeScenario < 35) { do p1.reset(true, 30, 512); do p2.reset(false, 160, 512); return; }
+        if (pipeScenario < 40) { do p1.reset(true, 160, 512); do p2.reset(false, 30, 512); return; }
+        if (pipeScenario < 45) { do p1.reset(true, 70, 512); do p2.reset(false, 120, 512); return; }
+        if (pipeScenario < 50) { do p1.reset(true, 100, 512); do p2.reset(false, 56, 512); return; }
+        if (pipeScenario < 55) { do p1.reset(true, 20, 512); do p2.reset(false, 170, 512); return; }
+        if (pipeScenario < 60) { do p1.reset(true, 170, 512); do p2.reset(false, 20, 512); return; }
+        if (pipeScenario < 65) { do p1.reset(true, 60, 512); do p2.reset(false, 130, 512); return; }
+        if (pipeScenario < 70) { do p1.reset(true, 130, 512); do p2.reset(false, 60, 512); return; }
+        if (pipeScenario < 75) { do p1.reset(true, 90, 512); do p2.reset(false, 66, 512); return; }
+        if (pipeScenario < 80) { do p1.reset(true, 80, 512); do p2.reset(false, 110, 512); return; }
+        if (pipeScenario < 85) { do p1.reset(true, 40, 512); do p2.reset(false, 150, 512); return; }
+        if (pipeScenario < 90) { do p1.reset(true, 150, 512); do p2.reset(false, 40, 512); return; }
+        if (pipeScenario < 95) { do p1.reset(true, 15, 512); do p2.reset(false, 175, 512); return; }
+        if (pipeScenario < 100) { do p1.reset(true, 150, 512); do p2.reset(false, 6, 512); return; }
+        if (pipeScenario < 105) { do p1.reset(true, 95, 512); do p2.reset(false, 95, 512); return; }
+        if (pipeScenario < 110) { do p1.reset(true, 55, 512); do p2.reset(false, 135, 512); return; }
+        if (pipeScenario < 115) { do p1.reset(true, 135, 512); do p2.reset(false, 55, 512); return; }
+        if (pipeScenario < 120) { do p1.reset(true, 25, 512); do p2.reset(false, 165, 512); return; }
+        if (pipeScenario < 125) { do p1.reset(true, 140, 512); do p2.reset(false, 16, 512); return; }
+        if (pipeScenario < 130) { do p1.reset(true, 75, 512); do p2.reset(false, 115, 512); return; }
+        if (pipeScenario < 135) { do p1.reset(true, 115, 512); do p2.reset(false, 75, 512); return; }
+        if (pipeScenario < 140) { do p1.reset(true, 45, 512); do p2.reset(false, 145, 512); return; }
+        if (pipeScenario < 145) { do p1.reset(true, 145, 512); do p2.reset(false, 45, 512); return; }
+        if (pipeScenario < 150) { do p1.reset(true, 105, 512); do p2.reset(false, 51, 512); return; }
+        if (pipeScenario < 155) { do p1.reset(true, 65, 512); do p2.reset(false, 125, 512); return; }
+        if (pipeScenario < 160) { do p1.reset(true, 18, 512); do p2.reset(false, 172, 512); return; }
+        if (pipeScenario < 165) { do p1.reset(true, 172, 512); do p2.reset(false, 18, 512); return; }
+        if (pipeScenario < 170) { do p1.reset(true, 85, 512); do p2.reset(false, 105, 512); return; }
+        if (pipeScenario < 175) { do p1.reset(true, 85, 512); do p2.reset(false, 71, 512); return; }
+        if (pipeScenario < 180) { do p1.reset(true, 35, 512); do p2.reset(false, 155, 512); return; }
+        if (pipeScenario < 185) { do p1.reset(true, 155, 512); do p2.reset(false, 35, 512); return; }
+        if (pipeScenario < 190) { do p1.reset(true, 12, 512); do p2.reset(false, 178, 512); return; }
+        if (pipeScenario < 195) { do p1.reset(true, 178, 512); do p2.reset(false, 12, 512); return; }
+        if (pipeScenario < 200) { do p1.reset(true, 38, 512); do p2.reset(false, 118, 512); return; }
+        if (pipeScenario < 205) { do p1.reset(true, 132, 512); do p2.reset(false, 58, 512); return; }
+        if (pipeScenario < 210) { do p1.reset(true, 92, 512); do p2.reset(false, 98, 512); return; }
+        if (pipeScenario < 215) { do p1.reset(true, 98, 512); do p2.reset(false, 92, 512); return; }
+        if (pipeScenario < 220) { do p1.reset(true, 22, 512); do p2.reset(false, 168, 512); return; }
+        if (pipeScenario < 225) { do p1.reset(true, 140, 512); do p2.reset(false, 16, 512); return; }
+        if (pipeScenario < 230) { do p1.reset(true, 68, 512); do p2.reset(false, 122, 512); return; }
+        if (pipeScenario < 235) { do p1.reset(true, 122, 512); do p2.reset(false, 68, 512); return; }
+        if (pipeScenario < 240) { do p1.reset(true, 42, 512); do p2.reset(false, 148, 512); return; }
+        if (pipeScenario < 245) { do p1.reset(true, 148, 512); do p2.reset(false, 42, 512); return; }
+        if (pipeScenario < 250) { do p1.reset(true, 90, 512); do p2.reset(false, 66, 512); return; }
+        if (pipeScenario < 255) { do p1.reset(true, 78, 512); do p2.reset(false, 112, 512); return; }
+        if (pipeScenario < 260) { do p1.reset(true, 14, 512); do p2.reset(false, 176, 512); return; }
+        if (pipeScenario < 265) { do p1.reset(true, 176, 512); do p2.reset(false, 14, 512); return; }
+        if (pipeScenario < 270) { do p1.reset(true, 52, 512); do p2.reset(false, 138, 512); return; }
+        if (pipeScenario < 275) { do p1.reset(true, 118, 512); do p2.reset(false, 38, 512); return; }
+        if (pipeScenario < 280) { do p1.reset(true, 88, 512); do p2.reset(false, 102, 512); return; }
+        if (pipeScenario < 285) { do p1.reset(true, 102, 512); do p2.reset(false, 88, 512); return; }
+        if (pipeScenario < 290) { do p1.reset(true, 32, 512); do p2.reset(false, 158, 512); return; }
+        if (pipeScenario < 295) { do p1.reset(true, 158, 512); do p2.reset(false, 32, 512); return; }
+        if (pipeScenario < 300) { do p1.reset(true, 108, 512); do p2.reset(false, 48, 512); return; }
+        if (pipeScenario < 305) { do p1.reset(true, 62, 512); do p2.reset(false, 128, 512); return; }
+        if (pipeScenario < 310) { do p1.reset(true, 28, 512); do p2.reset(false, 162, 512); return; }
+        if (pipeScenario < 315) { do p1.reset(true, 162, 512); do p2.reset(false, 28, 512); return; }
+        if (pipeScenario < 320) { do p1.reset(true, 72, 512); do p2.reset(false, 118, 512); return; }
+        if (pipeScenario < 325) { do p1.reset(true, 98, 512); do p2.reset(false, 58, 512); return; }
+        if (pipeScenario < 330) { do p1.reset(true, 48, 512); do p2.reset(false, 142, 512); return; }
+        if (pipeScenario < 335) { do p1.reset(true, 142, 512); do p2.reset(false, 48, 512); return; }
+        if (pipeScenario < 340) { do p1.reset(true, 108, 512); do p2.reset(false, 82, 512); return; }
+        if (pipeScenario < 345) { do p1.reset(true, 82, 512); do p2.reset(false, 108, 512); return; }
+        if (pipeScenario < 350) { do p1.reset(true, 6, 512); do p2.reset(false, 150, 512); return; }
+        if (pipeScenario < 355) { do p1.reset(true, 174, 512); do p2.reset(false, 16, 512); return; }
+        if (pipeScenario < 360) { do p1.reset(true, 56, 512); do p2.reset(false, 134, 512); return; }
+        if (pipeScenario < 365) { do p1.reset(true, 134, 512); do p2.reset(false, 56, 512); return; }
+        if (pipeScenario < 370) { do p1.reset(true, 96, 512); do p2.reset(false, 94, 512); return; }
+        if (pipeScenario < 375) { do p1.reset(true, 74, 512); do p2.reset(false, 82, 512); return; }
+        if (pipeScenario < 380) { do p1.reset(true, 26, 512); do p2.reset(false, 164, 512); return; }
+        if (pipeScenario < 385) { do p1.reset(true, 164, 512); do p2.reset(false, 26, 512); return; }
+        if (pipeScenario < 390) { do p1.reset(true, 66, 512); do p2.reset(false, 124, 512); return; }
+        if (pipeScenario < 395) { do p1.reset(true, 124, 512); do p2.reset(false, 66, 512); return; }
+        if (pipeScenario < 400) { do p1.reset(true, 18, 512); do p2.reset(false, 138, 512); return; }
+        if (pipeScenario < 405) { do p1.reset(true, 152, 512); do p2.reset(false, 38, 512); return; }
+        if (pipeScenario < 410) { do p1.reset(true, 114, 512); do p2.reset(false, 76, 512); return; }
+        if (pipeScenario < 415) { do p1.reset(true, 76, 512); do p2.reset(false, 114, 512); return; }
+        if (pipeScenario < 420) { do p1.reset(true, 13, 512); do p2.reset(false, 177, 512); return; }
+        if (pipeScenario < 425) { do p1.reset(true, 150, 512); do p2.reset(false, 6, 512); return; }
+        if (pipeScenario < 430) { do p1.reset(true, 53, 512); do p2.reset(false, 137, 512); return; }
+        if (pipeScenario < 435) { do p1.reset(true, 137, 512); do p2.reset(false, 53, 512); return; }
+        if (pipeScenario < 440) { do p1.reset(true, 87, 512); do p2.reset(false, 103, 512); return; }
+        if (pipeScenario < 445) { do p1.reset(true, 103, 512); do p2.reset(false, 87, 512); return; }
+        if (pipeScenario < 450) { do p1.reset(true, 13, 512); do p2.reset(false, 143, 512); return; }
+        if (pipeScenario < 455) { do p1.reset(true, 157, 512); do p2.reset(false, 33, 512); return; }
+        if (pipeScenario < 460) { do p1.reset(true, 123, 512); do p2.reset(false, 67, 512); return; }
+        if (pipeScenario < 465) { do p1.reset(true, 67, 512); do p2.reset(false, 123, 512); return; }
+        if (pipeScenario < 470) { do p1.reset(true, 23, 512); do p2.reset(false, 167, 512); return; }
+        if (pipeScenario < 475) { do p1.reset(true, 140, 512); do p2.reset(false, 16, 512); return; }
+        if (pipeScenario < 480) { do p1.reset(true, 73, 512); do p2.reset(false, 117, 512); return; }
+        if (pipeScenario < 485) { do p1.reset(true, 117, 512); do p2.reset(false, 73, 512); return; }
+        if (pipeScenario < 490) { do p1.reset(true, 43, 512); do p2.reset(false, 147, 512); return; }
+        if (pipeScenario < 495) { do p1.reset(true, 127, 512); do p2.reset(false, 29, 512); return; }
+        
+        do p1.reset(true, 107, 512); do p2.reset(false, 83, 512);
+        return;
+    }
+}

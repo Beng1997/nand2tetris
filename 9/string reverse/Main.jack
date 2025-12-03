@@ -1,0 +1,12 @@
+/** reversing a string were getting from the user */
+class Main {
+    function void main() {
+        var String s;
+        var String reversed;
+        let s = Keyboard.readLine("enter you string: ");
+        let reversed = Reverser.reverse(s);
+        do Output.printString(reversed);
+        do Output.println();
+        return;
+    }
+}

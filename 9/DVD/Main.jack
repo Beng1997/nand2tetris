@@ -1,0 +1,19 @@
+/**
+ * Main class for the DVD Logo program.
+    basicly it creates a new logo,draw it,hide it and then draw it again in a new position thanks to move
+*/
+
+class Main {
+    function void main() {
+        var DVDLogo logo;
+        let logo = DVDLogo.new();
+        
+        while (true) {
+            do logo.draw();
+            do Sys.wait(2);
+            do logo.hide();
+            do logo.move();
+        }
+        return;
+    }
+}

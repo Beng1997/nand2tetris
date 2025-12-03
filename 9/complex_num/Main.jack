@@ -1,0 +1,17 @@
+class Main {
+   function void main() {
+      var Complex a, b, c,d;        
+      var int a_re, a_im, b_re, b_im;
+      let a_re = Keyboard.readInt("Enter the real part of a: ");
+      let a_im = Keyboard.readInt("Enter the imaginary part of a: ");
+      let b_re = Keyboard.readInt("Enter the real part of b: ");
+      let b_im = Keyboard.readInt("Enter the imaginary part of b: ");
+      let a = Complex.new(a_re, a_im);
+      let b = Complex.new(b_re, b_im);
+      let c = a.plus(b);  
+      let d = a.times(b);
+      do c.print();
+      do d.print();       
+      return;
+   }
+}

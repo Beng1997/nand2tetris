@@ -1,0 +1,2212 @@
+function Pipe.new 0
+    push constant 4
+    call Memory.alloc 1
+    pop pointer 0
+    push constant 490
+    pop this 2
+    push argument 0
+    pop this 3
+    push this 3
+    not
+    if-goto Pipe_1
+    push constant 0
+    pop this 0
+    push argument 1
+    pop this 1
+    goto Pipe_0
+label Pipe_1
+    push constant 255
+    push argument 1
+    sub
+    pop this 0
+    push constant 255
+    pop this 1
+label Pipe_0
+    push pointer 0
+    return
+function Pipe.dispose 0
+    push argument 0
+    pop pointer 0
+    push pointer 0
+    call Memory.deAlloc 1
+    pop temp 0
+    push constant 0
+    return
+function Pipe.getLeft 0
+    push argument 0
+    pop pointer 0
+    push this 2
+    return
+function Pipe.getTop 0
+    push argument 0
+    pop pointer 0
+    push this 0
+    return
+function Pipe.getBottom 0
+    push argument 0
+    pop pointer 0
+    push this 1
+    return
+function Pipe.getUpper 0
+    push argument 0
+    pop pointer 0
+    push this 3
+    return
+function Pipe.reset 0
+    push argument 0
+    pop pointer 0
+    push argument 3
+    pop this 2
+    push argument 1
+    pop this 3
+    push this 3
+    not
+    if-goto Pipe_3
+    push constant 0
+    pop this 0
+    push argument 2
+    pop this 1
+    goto Pipe_2
+label Pipe_3
+    push constant 255
+    push argument 2
+    sub
+    pop this 0
+    push constant 255
+    pop this 1
+label Pipe_2
+    push constant 0
+    return
+function Pipe.move 0
+    push argument 0
+    pop pointer 0
+    push this 2
+    push constant 3
+    sub
+    pop this 2
+    push constant 0
+    return
+function Pipe.draw 0
+    push argument 0
+    pop pointer 0
+    push this 3
+    not
+    if-goto Pipe_5
+    push pointer 0
+    call Pipe.draw_upper 1
+    pop temp 0
+    goto Pipe_4
+label Pipe_5
+    push pointer 0
+    call Pipe.draw_lower 1
+    pop temp 0
+label Pipe_4
+    push constant 0
+    return
+function Pipe.hide 0
+    push argument 0
+    pop pointer 0
+    push this 3
+    not
+    if-goto Pipe_7
+    push pointer 0
+    call Pipe.hide_upper 1
+    pop temp 0
+    goto Pipe_6
+label Pipe_7
+    push pointer 0
+    call Pipe.hide_lower 1
+    pop temp 0
+label Pipe_6
+    push constant 0
+    return
+function Pipe.draw_lower 3
+    push argument 0
+    pop pointer 0
+    push this 2
+    push constant 16
+    call Math.divide 2
+    pop local 2
+    push local 2
+    push constant 1
+    add
+    push constant 0
+    lt
+    push local 2
+    push constant 1
+    add
+    push constant 31
+    gt
+    or
+    not
+    if-goto Pipe_9
+    push constant 0
+    return
+    goto Pipe_8
+label Pipe_9
+label Pipe_8
+    push constant 16384
+    push this 0
+    push constant 32
+    call Math.multiply 2
+    add
+    push local 2
+    add
+    pop local 0
+    push local 0
+    push constant 1
+    add
+    push constant 16380
+    call Memory.poke 2
+    pop temp 0
+    push local 0
+    push constant 33
+    add
+    push constant 32766
+    call Memory.poke 2
+    pop temp 0
+    push local 0
+    push constant 65
+    add
+    push constant 32766
+    call Memory.poke 2
+    pop temp 0
+    push local 0
+    push constant 97
+    add
+    push constant 32766
+    call Memory.poke 2
+    pop temp 0
+    push local 0
+    push constant 129
+    add
+    push constant 16380
+    call Memory.poke 2
+    pop temp 0
+    push local 0
+    push constant 161
+    add
+    push constant 8184
+    call Memory.poke 2
+    pop temp 0
+    push local 0
+    push constant 193
+    add
+    push constant 8184
+    call Memory.poke 2
+    pop temp 0
+    push local 0
+    push constant 225
+    add
+    push constant 8184
+    call Memory.poke 2
+    pop temp 0
+    push local 0
+    push constant 257
+    add
+    push constant 8184
+    call Memory.poke 2
+    pop temp 0
+    push local 0
+    push constant 289
+    add
+    push constant 8184
+    call Memory.poke 2
+    pop temp 0
+    push local 0
+    push constant 321
+    add
+    push constant 8184
+    call Memory.poke 2
+    pop temp 0
+    push local 0
+    push constant 353
+    add
+    push constant 8184
+    call Memory.poke 2
+    pop temp 0
+    push local 0
+    push constant 385
+    add
+    push constant 8184
+    call Memory.poke 2
+    pop temp 0
+    push local 0
+    push constant 417
+    add
+    push constant 8184
+    call Memory.poke 2
+    pop temp 0
+    push local 0
+    push constant 449
+    add
+    push constant 8184
+    call Memory.poke 2
+    pop temp 0
+    push local 0
+    push constant 481
+    add
+    push constant 8184
+    call Memory.poke 2
+    pop temp 0
+    push local 0
+    push constant 513
+    add
+    push constant 8184
+    call Memory.poke 2
+    pop temp 0
+    push local 0
+    push constant 545
+    add
+    push constant 8184
+    call Memory.poke 2
+    pop temp 0
+    push local 0
+    push constant 577
+    add
+    push constant 8184
+    call Memory.poke 2
+    pop temp 0
+    push local 0
+    push constant 609
+    add
+    push constant 8184
+    call Memory.poke 2
+    pop temp 0
+    push this 0
+    push constant 20
+    add
+    pop local 1
+label Pipe_10
+    push local 1
+    push this 1
+    lt
+    not
+    if-goto Pipe_11
+    push constant 16384
+    push local 1
+    push constant 32
+    call Math.multiply 2
+    add
+    push local 2
+    add
+    pop local 0
+    push local 1
+    push constant 1
+    neg
+    gt
+    push local 1
+    push constant 256
+    lt
+    and
+    not
+    if-goto Pipe_13
+    push local 0
+    push constant 1
+    add
+    push constant 8184
+    call Memory.poke 2
+    pop temp 0
+    goto Pipe_12
+label Pipe_13
+label Pipe_12
+    push local 1
+    push constant 1
+    add
+    pop local 1
+    goto Pipe_10
+label Pipe_11
+    push constant 0
+    return
+function Pipe.hide_lower 6
+    push argument 0
+    pop pointer 0
+    push this 2
+    push constant 16
+    call Math.divide 2
+    pop local 2
+    push local 2
+    push constant 1
+    neg
+    gt
+    push local 2
+    push constant 32
+    lt
+    and
+    pop local 3
+    push local 2
+    push constant 1
+    add
+    push constant 1
+    neg
+    gt
+    push local 2
+    push constant 1
+    add
+    push constant 32
+    lt
+    and
+    pop local 4
+    push local 2
+    push constant 2
+    add
+    push constant 1
+    neg
+    gt
+    push local 2
+    push constant 2
+    add
+    push constant 32
+    lt
+    and
+    pop local 5
+    push constant 16384
+    push this 0
+    push constant 32
+    call Math.multiply 2
+    add
+    push local 2
+    add
+    pop local 0
+    push local 3
+    not
+    if-goto Pipe_15
+    push local 0
+    push constant 0
+    add
+    push constant 0
+    call Memory.poke 2
+    pop temp 0
+    goto Pipe_14
+label Pipe_15
+label Pipe_14
+    push local 4
+    not
+    if-goto Pipe_17
+    push local 0
+    push constant 1
+    add
+    push constant 0
+    call Memory.poke 2
+    pop temp 0
+    goto Pipe_16
+label Pipe_17
+label Pipe_16
+    push local 5
+    not
+    if-goto Pipe_19
+    push local 0
+    push constant 2
+    add
+    push constant 0
+    call Memory.poke 2
+    pop temp 0
+    goto Pipe_18
+label Pipe_19
+label Pipe_18
+    push local 3
+    not
+    if-goto Pipe_21
+    push local 0
+    push constant 32
+    add
+    push constant 0
+    call Memory.poke 2
+    pop temp 0
+    goto Pipe_20
+label Pipe_21
+label Pipe_20
+    push local 4
+    not
+    if-goto Pipe_23
+    push local 0
+    push constant 33
+    add
+    push constant 0
+    call Memory.poke 2
+    pop temp 0
+    goto Pipe_22
+label Pipe_23
+label Pipe_22
+    push local 5
+    not
+    if-goto Pipe_25
+    push local 0
+    push constant 34
+    add
+    push constant 0
+    call Memory.poke 2
+    pop temp 0
+    goto Pipe_24
+label Pipe_25
+label Pipe_24
+    push local 3
+    not
+    if-goto Pipe_27
+    push local 0
+    push constant 64
+    add
+    push constant 0
+    call Memory.poke 2
+    pop temp 0
+    goto Pipe_26
+label Pipe_27
+label Pipe_26
+    push local 4
+    not
+    if-goto Pipe_29
+    push local 0
+    push constant 65
+    add
+    push constant 0
+    call Memory.poke 2
+    pop temp 0
+    goto Pipe_28
+label Pipe_29
+label Pipe_28
+    push local 5
+    not
+    if-goto Pipe_31
+    push local 0
+    push constant 66
+    add
+    push constant 0
+    call Memory.poke 2
+    pop temp 0
+    goto Pipe_30
+label Pipe_31
+label Pipe_30
+    push local 3
+    not
+    if-goto Pipe_33
+    push local 0
+    push constant 96
+    add
+    push constant 0
+    call Memory.poke 2
+    pop temp 0
+    goto Pipe_32
+label Pipe_33
+label Pipe_32
+    push local 4
+    not
+    if-goto Pipe_35
+    push local 0
+    push constant 97
+    add
+    push constant 0
+    call Memory.poke 2
+    pop temp 0
+    goto Pipe_34
+label Pipe_35
+label Pipe_34
+    push local 5
+    not
+    if-goto Pipe_37
+    push local 0
+    push constant 98
+    add
+    push constant 0
+    call Memory.poke 2
+    pop temp 0
+    goto Pipe_36
+label Pipe_37
+label Pipe_36
+    push local 3
+    not
+    if-goto Pipe_39
+    push local 0
+    push constant 128
+    add
+    push constant 0
+    call Memory.poke 2
+    pop temp 0
+    goto Pipe_38
+label Pipe_39
+label Pipe_38
+    push local 4
+    not
+    if-goto Pipe_41
+    push local 0
+    push constant 129
+    add
+    push constant 0
+    call Memory.poke 2
+    pop temp 0
+    goto Pipe_40
+label Pipe_41
+label Pipe_40
+    push local 5
+    not
+    if-goto Pipe_43
+    push local 0
+    push constant 130
+    add
+    push constant 0
+    call Memory.poke 2
+    pop temp 0
+    goto Pipe_42
+label Pipe_43
+label Pipe_42
+    push local 3
+    not
+    if-goto Pipe_45
+    push local 0
+    push constant 160
+    add
+    push constant 0
+    call Memory.poke 2
+    pop temp 0
+    goto Pipe_44
+label Pipe_45
+label Pipe_44
+    push local 4
+    not
+    if-goto Pipe_47
+    push local 0
+    push constant 161
+    add
+    push constant 0
+    call Memory.poke 2
+    pop temp 0
+    goto Pipe_46
+label Pipe_47
+label Pipe_46
+    push local 5
+    not
+    if-goto Pipe_49
+    push local 0
+    push constant 162
+    add
+    push constant 0
+    call Memory.poke 2
+    pop temp 0
+    goto Pipe_48
+label Pipe_49
+label Pipe_48
+    push local 3
+    not
+    if-goto Pipe_51
+    push local 0
+    push constant 192
+    add
+    push constant 0
+    call Memory.poke 2
+    pop temp 0
+    goto Pipe_50
+label Pipe_51
+label Pipe_50
+    push local 4
+    not
+    if-goto Pipe_53
+    push local 0
+    push constant 193
+    add
+    push constant 0
+    call Memory.poke 2
+    pop temp 0
+    goto Pipe_52
+label Pipe_53
+label Pipe_52
+    push local 5
+    not
+    if-goto Pipe_55
+    push local 0
+    push constant 194
+    add
+    push constant 0
+    call Memory.poke 2
+    pop temp 0
+    goto Pipe_54
+label Pipe_55
+label Pipe_54
+    push local 3
+    not
+    if-goto Pipe_57
+    push local 0
+    push constant 224
+    add
+    push constant 0
+    call Memory.poke 2
+    pop temp 0
+    goto Pipe_56
+label Pipe_57
+label Pipe_56
+    push local 4
+    not
+    if-goto Pipe_59
+    push local 0
+    push constant 225
+    add
+    push constant 0
+    call Memory.poke 2
+    pop temp 0
+    goto Pipe_58
+label Pipe_59
+label Pipe_58
+    push local 5
+    not
+    if-goto Pipe_61
+    push local 0
+    push constant 226
+    add
+    push constant 0
+    call Memory.poke 2
+    pop temp 0
+    goto Pipe_60
+label Pipe_61
+label Pipe_60
+    push local 3
+    not
+    if-goto Pipe_63
+    push local 0
+    push constant 256
+    add
+    push constant 0
+    call Memory.poke 2
+    pop temp 0
+    goto Pipe_62
+label Pipe_63
+label Pipe_62
+    push local 4
+    not
+    if-goto Pipe_65
+    push local 0
+    push constant 257
+    add
+    push constant 0
+    call Memory.poke 2
+    pop temp 0
+    goto Pipe_64
+label Pipe_65
+label Pipe_64
+    push local 5
+    not
+    if-goto Pipe_67
+    push local 0
+    push constant 258
+    add
+    push constant 0
+    call Memory.poke 2
+    pop temp 0
+    goto Pipe_66
+label Pipe_67
+label Pipe_66
+    push local 3
+    not
+    if-goto Pipe_69
+    push local 0
+    push constant 288
+    add
+    push constant 0
+    call Memory.poke 2
+    pop temp 0
+    goto Pipe_68
+label Pipe_69
+label Pipe_68
+    push local 4
+    not
+    if-goto Pipe_71
+    push local 0
+    push constant 289
+    add
+    push constant 0
+    call Memory.poke 2
+    pop temp 0
+    goto Pipe_70
+label Pipe_71
+label Pipe_70
+    push local 5
+    not
+    if-goto Pipe_73
+    push local 0
+    push constant 290
+    add
+    push constant 0
+    call Memory.poke 2
+    pop temp 0
+    goto Pipe_72
+label Pipe_73
+label Pipe_72
+    push local 3
+    not
+    if-goto Pipe_75
+    push local 0
+    push constant 320
+    add
+    push constant 0
+    call Memory.poke 2
+    pop temp 0
+    goto Pipe_74
+label Pipe_75
+label Pipe_74
+    push local 4
+    not
+    if-goto Pipe_77
+    push local 0
+    push constant 321
+    add
+    push constant 0
+    call Memory.poke 2
+    pop temp 0
+    goto Pipe_76
+label Pipe_77
+label Pipe_76
+    push local 5
+    not
+    if-goto Pipe_79
+    push local 0
+    push constant 322
+    add
+    push constant 0
+    call Memory.poke 2
+    pop temp 0
+    goto Pipe_78
+label Pipe_79
+label Pipe_78
+    push local 3
+    not
+    if-goto Pipe_81
+    push local 0
+    push constant 352
+    add
+    push constant 0
+    call Memory.poke 2
+    pop temp 0
+    goto Pipe_80
+label Pipe_81
+label Pipe_80
+    push local 4
+    not
+    if-goto Pipe_83
+    push local 0
+    push constant 353
+    add
+    push constant 0
+    call Memory.poke 2
+    pop temp 0
+    goto Pipe_82
+label Pipe_83
+label Pipe_82
+    push local 5
+    not
+    if-goto Pipe_85
+    push local 0
+    push constant 354
+    add
+    push constant 0
+    call Memory.poke 2
+    pop temp 0
+    goto Pipe_84
+label Pipe_85
+label Pipe_84
+    push local 3
+    not
+    if-goto Pipe_87
+    push local 0
+    push constant 384
+    add
+    push constant 0
+    call Memory.poke 2
+    pop temp 0
+    goto Pipe_86
+label Pipe_87
+label Pipe_86
+    push local 4
+    not
+    if-goto Pipe_89
+    push local 0
+    push constant 385
+    add
+    push constant 0
+    call Memory.poke 2
+    pop temp 0
+    goto Pipe_88
+label Pipe_89
+label Pipe_88
+    push local 5
+    not
+    if-goto Pipe_91
+    push local 0
+    push constant 386
+    add
+    push constant 0
+    call Memory.poke 2
+    pop temp 0
+    goto Pipe_90
+label Pipe_91
+label Pipe_90
+    push local 3
+    not
+    if-goto Pipe_93
+    push local 0
+    push constant 416
+    add
+    push constant 0
+    call Memory.poke 2
+    pop temp 0
+    goto Pipe_92
+label Pipe_93
+label Pipe_92
+    push local 4
+    not
+    if-goto Pipe_95
+    push local 0
+    push constant 417
+    add
+    push constant 0
+    call Memory.poke 2
+    pop temp 0
+    goto Pipe_94
+label Pipe_95
+label Pipe_94
+    push local 5
+    not
+    if-goto Pipe_97
+    push local 0
+    push constant 418
+    add
+    push constant 0
+    call Memory.poke 2
+    pop temp 0
+    goto Pipe_96
+label Pipe_97
+label Pipe_96
+    push local 3
+    not
+    if-goto Pipe_99
+    push local 0
+    push constant 448
+    add
+    push constant 0
+    call Memory.poke 2
+    pop temp 0
+    goto Pipe_98
+label Pipe_99
+label Pipe_98
+    push local 4
+    not
+    if-goto Pipe_101
+    push local 0
+    push constant 449
+    add
+    push constant 0
+    call Memory.poke 2
+    pop temp 0
+    goto Pipe_100
+label Pipe_101
+label Pipe_100
+    push local 5
+    not
+    if-goto Pipe_103
+    push local 0
+    push constant 450
+    add
+    push constant 0
+    call Memory.poke 2
+    pop temp 0
+    goto Pipe_102
+label Pipe_103
+label Pipe_102
+    push local 3
+    not
+    if-goto Pipe_105
+    push local 0
+    push constant 480
+    add
+    push constant 0
+    call Memory.poke 2
+    pop temp 0
+    goto Pipe_104
+label Pipe_105
+label Pipe_104
+    push local 4
+    not
+    if-goto Pipe_107
+    push local 0
+    push constant 481
+    add
+    push constant 0
+    call Memory.poke 2
+    pop temp 0
+    goto Pipe_106
+label Pipe_107
+label Pipe_106
+    push local 5
+    not
+    if-goto Pipe_109
+    push local 0
+    push constant 482
+    add
+    push constant 0
+    call Memory.poke 2
+    pop temp 0
+    goto Pipe_108
+label Pipe_109
+label Pipe_108
+    push local 3
+    not
+    if-goto Pipe_111
+    push local 0
+    push constant 512
+    add
+    push constant 0
+    call Memory.poke 2
+    pop temp 0
+    goto Pipe_110
+label Pipe_111
+label Pipe_110
+    push local 4
+    not
+    if-goto Pipe_113
+    push local 0
+    push constant 513
+    add
+    push constant 0
+    call Memory.poke 2
+    pop temp 0
+    goto Pipe_112
+label Pipe_113
+label Pipe_112
+    push local 5
+    not
+    if-goto Pipe_115
+    push local 0
+    push constant 514
+    add
+    push constant 0
+    call Memory.poke 2
+    pop temp 0
+    goto Pipe_114
+label Pipe_115
+label Pipe_114
+    push local 3
+    not
+    if-goto Pipe_117
+    push local 0
+    push constant 544
+    add
+    push constant 0
+    call Memory.poke 2
+    pop temp 0
+    goto Pipe_116
+label Pipe_117
+label Pipe_116
+    push local 4
+    not
+    if-goto Pipe_119
+    push local 0
+    push constant 545
+    add
+    push constant 0
+    call Memory.poke 2
+    pop temp 0
+    goto Pipe_118
+label Pipe_119
+label Pipe_118
+    push local 5
+    not
+    if-goto Pipe_121
+    push local 0
+    push constant 546
+    add
+    push constant 0
+    call Memory.poke 2
+    pop temp 0
+    goto Pipe_120
+label Pipe_121
+label Pipe_120
+    push local 3
+    not
+    if-goto Pipe_123
+    push local 0
+    push constant 576
+    add
+    push constant 0
+    call Memory.poke 2
+    pop temp 0
+    goto Pipe_122
+label Pipe_123
+label Pipe_122
+    push local 4
+    not
+    if-goto Pipe_125
+    push local 0
+    push constant 577
+    add
+    push constant 0
+    call Memory.poke 2
+    pop temp 0
+    goto Pipe_124
+label Pipe_125
+label Pipe_124
+    push local 5
+    not
+    if-goto Pipe_127
+    push local 0
+    push constant 578
+    add
+    push constant 0
+    call Memory.poke 2
+    pop temp 0
+    goto Pipe_126
+label Pipe_127
+label Pipe_126
+    push local 3
+    not
+    if-goto Pipe_129
+    push local 0
+    push constant 608
+    add
+    push constant 0
+    call Memory.poke 2
+    pop temp 0
+    goto Pipe_128
+label Pipe_129
+label Pipe_128
+    push local 4
+    not
+    if-goto Pipe_131
+    push local 0
+    push constant 609
+    add
+    push constant 0
+    call Memory.poke 2
+    pop temp 0
+    goto Pipe_130
+label Pipe_131
+label Pipe_130
+    push local 5
+    not
+    if-goto Pipe_133
+    push local 0
+    push constant 610
+    add
+    push constant 0
+    call Memory.poke 2
+    pop temp 0
+    goto Pipe_132
+label Pipe_133
+label Pipe_132
+    push this 0
+    push constant 20
+    add
+    pop local 1
+label Pipe_134
+    push local 1
+    push this 1
+    lt
+    not
+    if-goto Pipe_135
+    push constant 16384
+    push local 1
+    push constant 32
+    call Math.multiply 2
+    add
+    push local 2
+    add
+    pop local 0
+    push local 1
+    push constant 1
+    neg
+    gt
+    push local 1
+    push constant 256
+    lt
+    and
+    not
+    if-goto Pipe_137
+    push local 3
+    not
+    if-goto Pipe_139
+    push local 0
+    push constant 0
+    add
+    push constant 0
+    call Memory.poke 2
+    pop temp 0
+    goto Pipe_138
+label Pipe_139
+label Pipe_138
+    push local 4
+    not
+    if-goto Pipe_141
+    push local 0
+    push constant 1
+    add
+    push constant 0
+    call Memory.poke 2
+    pop temp 0
+    goto Pipe_140
+label Pipe_141
+label Pipe_140
+    push local 5
+    not
+    if-goto Pipe_143
+    push local 0
+    push constant 2
+    add
+    push constant 0
+    call Memory.poke 2
+    pop temp 0
+    goto Pipe_142
+label Pipe_143
+label Pipe_142
+    goto Pipe_136
+label Pipe_137
+label Pipe_136
+    push local 1
+    push constant 1
+    add
+    pop local 1
+    goto Pipe_134
+label Pipe_135
+    push constant 0
+    return
+function Pipe.draw_upper 3
+    push argument 0
+    pop pointer 0
+    push this 2
+    push constant 16
+    call Math.divide 2
+    pop local 2
+    push local 2
+    push constant 1
+    add
+    push constant 0
+    lt
+    push local 2
+    push constant 1
+    add
+    push constant 31
+    gt
+    or
+    not
+    if-goto Pipe_145
+    push constant 0
+    return
+    goto Pipe_144
+label Pipe_145
+label Pipe_144
+    push constant 16384
+    push this 1
+    push constant 20
+    sub
+    push constant 32
+    call Math.multiply 2
+    add
+    push local 2
+    add
+    pop local 0
+    push local 0
+    push constant 1
+    add
+    push constant 8184
+    call Memory.poke 2
+    pop temp 0
+    push local 0
+    push constant 33
+    add
+    push constant 8184
+    call Memory.poke 2
+    pop temp 0
+    push local 0
+    push constant 65
+    add
+    push constant 8184
+    call Memory.poke 2
+    pop temp 0
+    push local 0
+    push constant 97
+    add
+    push constant 8184
+    call Memory.poke 2
+    pop temp 0
+    push local 0
+    push constant 129
+    add
+    push constant 8184
+    call Memory.poke 2
+    pop temp 0
+    push local 0
+    push constant 161
+    add
+    push constant 8184
+    call Memory.poke 2
+    pop temp 0
+    push local 0
+    push constant 193
+    add
+    push constant 8184
+    call Memory.poke 2
+    pop temp 0
+    push local 0
+    push constant 225
+    add
+    push constant 8184
+    call Memory.poke 2
+    pop temp 0
+    push local 0
+    push constant 257
+    add
+    push constant 8184
+    call Memory.poke 2
+    pop temp 0
+    push local 0
+    push constant 289
+    add
+    push constant 8184
+    call Memory.poke 2
+    pop temp 0
+    push local 0
+    push constant 321
+    add
+    push constant 8184
+    call Memory.poke 2
+    pop temp 0
+    push local 0
+    push constant 353
+    add
+    push constant 8184
+    call Memory.poke 2
+    pop temp 0
+    push local 0
+    push constant 385
+    add
+    push constant 8184
+    call Memory.poke 2
+    pop temp 0
+    push local 0
+    push constant 417
+    add
+    push constant 8184
+    call Memory.poke 2
+    pop temp 0
+    push local 0
+    push constant 449
+    add
+    push constant 8184
+    call Memory.poke 2
+    pop temp 0
+    push local 0
+    push constant 481
+    add
+    push constant 16380
+    call Memory.poke 2
+    pop temp 0
+    push local 0
+    push constant 513
+    add
+    push constant 32766
+    call Memory.poke 2
+    pop temp 0
+    push local 0
+    push constant 545
+    add
+    push constant 32766
+    call Memory.poke 2
+    pop temp 0
+    push local 0
+    push constant 577
+    add
+    push constant 32766
+    call Memory.poke 2
+    pop temp 0
+    push local 0
+    push constant 609
+    add
+    push constant 16380
+    call Memory.poke 2
+    pop temp 0
+    push this 0
+    pop local 1
+label Pipe_146
+    push local 1
+    push this 1
+    push constant 20
+    sub
+    lt
+    not
+    if-goto Pipe_147
+    push constant 16384
+    push local 1
+    push constant 32
+    call Math.multiply 2
+    add
+    push local 2
+    add
+    pop local 0
+    push local 1
+    push constant 1
+    neg
+    gt
+    push local 1
+    push constant 256
+    lt
+    and
+    not
+    if-goto Pipe_149
+    push local 0
+    push constant 1
+    add
+    push constant 8184
+    call Memory.poke 2
+    pop temp 0
+    goto Pipe_148
+label Pipe_149
+label Pipe_148
+    push local 1
+    push constant 1
+    add
+    pop local 1
+    goto Pipe_146
+label Pipe_147
+    push constant 0
+    return
+function Pipe.hide_upper 6
+    push argument 0
+    pop pointer 0
+    push this 2
+    push constant 16
+    call Math.divide 2
+    pop local 2
+    push local 2
+    push constant 1
+    neg
+    gt
+    push local 2
+    push constant 32
+    lt
+    and
+    pop local 3
+    push local 2
+    push constant 1
+    add
+    push constant 1
+    neg
+    gt
+    push local 2
+    push constant 1
+    add
+    push constant 32
+    lt
+    and
+    pop local 4
+    push local 2
+    push constant 2
+    add
+    push constant 1
+    neg
+    gt
+    push local 2
+    push constant 2
+    add
+    push constant 32
+    lt
+    and
+    pop local 5
+    push constant 16384
+    push this 1
+    push constant 20
+    sub
+    push constant 32
+    call Math.multiply 2
+    add
+    push local 2
+    add
+    pop local 0
+    push local 3
+    not
+    if-goto Pipe_151
+    push local 0
+    push constant 0
+    add
+    push constant 0
+    call Memory.poke 2
+    pop temp 0
+    goto Pipe_150
+label Pipe_151
+label Pipe_150
+    push local 4
+    not
+    if-goto Pipe_153
+    push local 0
+    push constant 1
+    add
+    push constant 0
+    call Memory.poke 2
+    pop temp 0
+    goto Pipe_152
+label Pipe_153
+label Pipe_152
+    push local 5
+    not
+    if-goto Pipe_155
+    push local 0
+    push constant 2
+    add
+    push constant 0
+    call Memory.poke 2
+    pop temp 0
+    goto Pipe_154
+label Pipe_155
+label Pipe_154
+    push local 3
+    not
+    if-goto Pipe_157
+    push local 0
+    push constant 32
+    add
+    push constant 0
+    call Memory.poke 2
+    pop temp 0
+    goto Pipe_156
+label Pipe_157
+label Pipe_156
+    push local 4
+    not
+    if-goto Pipe_159
+    push local 0
+    push constant 33
+    add
+    push constant 0
+    call Memory.poke 2
+    pop temp 0
+    goto Pipe_158
+label Pipe_159
+label Pipe_158
+    push local 5
+    not
+    if-goto Pipe_161
+    push local 0
+    push constant 34
+    add
+    push constant 0
+    call Memory.poke 2
+    pop temp 0
+    goto Pipe_160
+label Pipe_161
+label Pipe_160
+    push local 3
+    not
+    if-goto Pipe_163
+    push local 0
+    push constant 64
+    add
+    push constant 0
+    call Memory.poke 2
+    pop temp 0
+    goto Pipe_162
+label Pipe_163
+label Pipe_162
+    push local 4
+    not
+    if-goto Pipe_165
+    push local 0
+    push constant 65
+    add
+    push constant 0
+    call Memory.poke 2
+    pop temp 0
+    goto Pipe_164
+label Pipe_165
+label Pipe_164
+    push local 5
+    not
+    if-goto Pipe_167
+    push local 0
+    push constant 66
+    add
+    push constant 0
+    call Memory.poke 2
+    pop temp 0
+    goto Pipe_166
+label Pipe_167
+label Pipe_166
+    push local 3
+    not
+    if-goto Pipe_169
+    push local 0
+    push constant 96
+    add
+    push constant 0
+    call Memory.poke 2
+    pop temp 0
+    goto Pipe_168
+label Pipe_169
+label Pipe_168
+    push local 4
+    not
+    if-goto Pipe_171
+    push local 0
+    push constant 97
+    add
+    push constant 0
+    call Memory.poke 2
+    pop temp 0
+    goto Pipe_170
+label Pipe_171
+label Pipe_170
+    push local 5
+    not
+    if-goto Pipe_173
+    push local 0
+    push constant 98
+    add
+    push constant 0
+    call Memory.poke 2
+    pop temp 0
+    goto Pipe_172
+label Pipe_173
+label Pipe_172
+    push local 3
+    not
+    if-goto Pipe_175
+    push local 0
+    push constant 128
+    add
+    push constant 0
+    call Memory.poke 2
+    pop temp 0
+    goto Pipe_174
+label Pipe_175
+label Pipe_174
+    push local 4
+    not
+    if-goto Pipe_177
+    push local 0
+    push constant 129
+    add
+    push constant 0
+    call Memory.poke 2
+    pop temp 0
+    goto Pipe_176
+label Pipe_177
+label Pipe_176
+    push local 5
+    not
+    if-goto Pipe_179
+    push local 0
+    push constant 130
+    add
+    push constant 0
+    call Memory.poke 2
+    pop temp 0
+    goto Pipe_178
+label Pipe_179
+label Pipe_178
+    push local 3
+    not
+    if-goto Pipe_181
+    push local 0
+    push constant 160
+    add
+    push constant 0
+    call Memory.poke 2
+    pop temp 0
+    goto Pipe_180
+label Pipe_181
+label Pipe_180
+    push local 4
+    not
+    if-goto Pipe_183
+    push local 0
+    push constant 161
+    add
+    push constant 0
+    call Memory.poke 2
+    pop temp 0
+    goto Pipe_182
+label Pipe_183
+label Pipe_182
+    push local 5
+    not
+    if-goto Pipe_185
+    push local 0
+    push constant 162
+    add
+    push constant 0
+    call Memory.poke 2
+    pop temp 0
+    goto Pipe_184
+label Pipe_185
+label Pipe_184
+    push local 3
+    not
+    if-goto Pipe_187
+    push local 0
+    push constant 192
+    add
+    push constant 0
+    call Memory.poke 2
+    pop temp 0
+    goto Pipe_186
+label Pipe_187
+label Pipe_186
+    push local 4
+    not
+    if-goto Pipe_189
+    push local 0
+    push constant 193
+    add
+    push constant 0
+    call Memory.poke 2
+    pop temp 0
+    goto Pipe_188
+label Pipe_189
+label Pipe_188
+    push local 5
+    not
+    if-goto Pipe_191
+    push local 0
+    push constant 194
+    add
+    push constant 0
+    call Memory.poke 2
+    pop temp 0
+    goto Pipe_190
+label Pipe_191
+label Pipe_190
+    push local 3
+    not
+    if-goto Pipe_193
+    push local 0
+    push constant 224
+    add
+    push constant 0
+    call Memory.poke 2
+    pop temp 0
+    goto Pipe_192
+label Pipe_193
+label Pipe_192
+    push local 4
+    not
+    if-goto Pipe_195
+    push local 0
+    push constant 225
+    add
+    push constant 0
+    call Memory.poke 2
+    pop temp 0
+    goto Pipe_194
+label Pipe_195
+label Pipe_194
+    push local 5
+    not
+    if-goto Pipe_197
+    push local 0
+    push constant 226
+    add
+    push constant 0
+    call Memory.poke 2
+    pop temp 0
+    goto Pipe_196
+label Pipe_197
+label Pipe_196
+    push local 3
+    not
+    if-goto Pipe_199
+    push local 0
+    push constant 256
+    add
+    push constant 0
+    call Memory.poke 2
+    pop temp 0
+    goto Pipe_198
+label Pipe_199
+label Pipe_198
+    push local 4
+    not
+    if-goto Pipe_201
+    push local 0
+    push constant 257
+    add
+    push constant 0
+    call Memory.poke 2
+    pop temp 0
+    goto Pipe_200
+label Pipe_201
+label Pipe_200
+    push local 5
+    not
+    if-goto Pipe_203
+    push local 0
+    push constant 258
+    add
+    push constant 0
+    call Memory.poke 2
+    pop temp 0
+    goto Pipe_202
+label Pipe_203
+label Pipe_202
+    push local 3
+    not
+    if-goto Pipe_205
+    push local 0
+    push constant 288
+    add
+    push constant 0
+    call Memory.poke 2
+    pop temp 0
+    goto Pipe_204
+label Pipe_205
+label Pipe_204
+    push local 4
+    not
+    if-goto Pipe_207
+    push local 0
+    push constant 289
+    add
+    push constant 0
+    call Memory.poke 2
+    pop temp 0
+    goto Pipe_206
+label Pipe_207
+label Pipe_206
+    push local 5
+    not
+    if-goto Pipe_209
+    push local 0
+    push constant 290
+    add
+    push constant 0
+    call Memory.poke 2
+    pop temp 0
+    goto Pipe_208
+label Pipe_209
+label Pipe_208
+    push local 3
+    not
+    if-goto Pipe_211
+    push local 0
+    push constant 320
+    add
+    push constant 0
+    call Memory.poke 2
+    pop temp 0
+    goto Pipe_210
+label Pipe_211
+label Pipe_210
+    push local 4
+    not
+    if-goto Pipe_213
+    push local 0
+    push constant 321
+    add
+    push constant 0
+    call Memory.poke 2
+    pop temp 0
+    goto Pipe_212
+label Pipe_213
+label Pipe_212
+    push local 5
+    not
+    if-goto Pipe_215
+    push local 0
+    push constant 322
+    add
+    push constant 0
+    call Memory.poke 2
+    pop temp 0
+    goto Pipe_214
+label Pipe_215
+label Pipe_214
+    push local 3
+    not
+    if-goto Pipe_217
+    push local 0
+    push constant 352
+    add
+    push constant 0
+    call Memory.poke 2
+    pop temp 0
+    goto Pipe_216
+label Pipe_217
+label Pipe_216
+    push local 4
+    not
+    if-goto Pipe_219
+    push local 0
+    push constant 353
+    add
+    push constant 0
+    call Memory.poke 2
+    pop temp 0
+    goto Pipe_218
+label Pipe_219
+label Pipe_218
+    push local 5
+    not
+    if-goto Pipe_221
+    push local 0
+    push constant 354
+    add
+    push constant 0
+    call Memory.poke 2
+    pop temp 0
+    goto Pipe_220
+label Pipe_221
+label Pipe_220
+    push local 3
+    not
+    if-goto Pipe_223
+    push local 0
+    push constant 384
+    add
+    push constant 0
+    call Memory.poke 2
+    pop temp 0
+    goto Pipe_222
+label Pipe_223
+label Pipe_222
+    push local 4
+    not
+    if-goto Pipe_225
+    push local 0
+    push constant 385
+    add
+    push constant 0
+    call Memory.poke 2
+    pop temp 0
+    goto Pipe_224
+label Pipe_225
+label Pipe_224
+    push local 5
+    not
+    if-goto Pipe_227
+    push local 0
+    push constant 386
+    add
+    push constant 0
+    call Memory.poke 2
+    pop temp 0
+    goto Pipe_226
+label Pipe_227
+label Pipe_226
+    push local 3
+    not
+    if-goto Pipe_229
+    push local 0
+    push constant 416
+    add
+    push constant 0
+    call Memory.poke 2
+    pop temp 0
+    goto Pipe_228
+label Pipe_229
+label Pipe_228
+    push local 4
+    not
+    if-goto Pipe_231
+    push local 0
+    push constant 417
+    add
+    push constant 0
+    call Memory.poke 2
+    pop temp 0
+    goto Pipe_230
+label Pipe_231
+label Pipe_230
+    push local 5
+    not
+    if-goto Pipe_233
+    push local 0
+    push constant 418
+    add
+    push constant 0
+    call Memory.poke 2
+    pop temp 0
+    goto Pipe_232
+label Pipe_233
+label Pipe_232
+    push local 3
+    not
+    if-goto Pipe_235
+    push local 0
+    push constant 448
+    add
+    push constant 0
+    call Memory.poke 2
+    pop temp 0
+    goto Pipe_234
+label Pipe_235
+label Pipe_234
+    push local 4
+    not
+    if-goto Pipe_237
+    push local 0
+    push constant 449
+    add
+    push constant 0
+    call Memory.poke 2
+    pop temp 0
+    goto Pipe_236
+label Pipe_237
+label Pipe_236
+    push local 5
+    not
+    if-goto Pipe_239
+    push local 0
+    push constant 450
+    add
+    push constant 0
+    call Memory.poke 2
+    pop temp 0
+    goto Pipe_238
+label Pipe_239
+label Pipe_238
+    push local 3
+    not
+    if-goto Pipe_241
+    push local 0
+    push constant 480
+    add
+    push constant 0
+    call Memory.poke 2
+    pop temp 0
+    goto Pipe_240
+label Pipe_241
+label Pipe_240
+    push local 4
+    not
+    if-goto Pipe_243
+    push local 0
+    push constant 481
+    add
+    push constant 0
+    call Memory.poke 2
+    pop temp 0
+    goto Pipe_242
+label Pipe_243
+label Pipe_242
+    push local 5
+    not
+    if-goto Pipe_245
+    push local 0
+    push constant 482
+    add
+    push constant 0
+    call Memory.poke 2
+    pop temp 0
+    goto Pipe_244
+label Pipe_245
+label Pipe_244
+    push local 3
+    not
+    if-goto Pipe_247
+    push local 0
+    push constant 512
+    add
+    push constant 0
+    call Memory.poke 2
+    pop temp 0
+    goto Pipe_246
+label Pipe_247
+label Pipe_246
+    push local 4
+    not
+    if-goto Pipe_249
+    push local 0
+    push constant 513
+    add
+    push constant 0
+    call Memory.poke 2
+    pop temp 0
+    goto Pipe_248
+label Pipe_249
+label Pipe_248
+    push local 5
+    not
+    if-goto Pipe_251
+    push local 0
+    push constant 514
+    add
+    push constant 0
+    call Memory.poke 2
+    pop temp 0
+    goto Pipe_250
+label Pipe_251
+label Pipe_250
+    push local 3
+    not
+    if-goto Pipe_253
+    push local 0
+    push constant 544
+    add
+    push constant 0
+    call Memory.poke 2
+    pop temp 0
+    goto Pipe_252
+label Pipe_253
+label Pipe_252
+    push local 4
+    not
+    if-goto Pipe_255
+    push local 0
+    push constant 545
+    add
+    push constant 0
+    call Memory.poke 2
+    pop temp 0
+    goto Pipe_254
+label Pipe_255
+label Pipe_254
+    push local 5
+    not
+    if-goto Pipe_257
+    push local 0
+    push constant 546
+    add
+    push constant 0
+    call Memory.poke 2
+    pop temp 0
+    goto Pipe_256
+label Pipe_257
+label Pipe_256
+    push local 3
+    not
+    if-goto Pipe_259
+    push local 0
+    push constant 576
+    add
+    push constant 0
+    call Memory.poke 2
+    pop temp 0
+    goto Pipe_258
+label Pipe_259
+label Pipe_258
+    push local 4
+    not
+    if-goto Pipe_261
+    push local 0
+    push constant 577
+    add
+    push constant 0
+    call Memory.poke 2
+    pop temp 0
+    goto Pipe_260
+label Pipe_261
+label Pipe_260
+    push local 5
+    not
+    if-goto Pipe_263
+    push local 0
+    push constant 578
+    add
+    push constant 0
+    call Memory.poke 2
+    pop temp 0
+    goto Pipe_262
+label Pipe_263
+label Pipe_262
+    push local 3
+    not
+    if-goto Pipe_265
+    push local 0
+    push constant 608
+    add
+    push constant 0
+    call Memory.poke 2
+    pop temp 0
+    goto Pipe_264
+label Pipe_265
+label Pipe_264
+    push local 4
+    not
+    if-goto Pipe_267
+    push local 0
+    push constant 609
+    add
+    push constant 0
+    call Memory.poke 2
+    pop temp 0
+    goto Pipe_266
+label Pipe_267
+label Pipe_266
+    push local 5
+    not
+    if-goto Pipe_269
+    push local 0
+    push constant 610
+    add
+    push constant 0
+    call Memory.poke 2
+    pop temp 0
+    goto Pipe_268
+label Pipe_269
+label Pipe_268
+    push this 0
+    pop local 1
+label Pipe_270
+    push local 1
+    push this 1
+    push constant 20
+    sub
+    lt
+    not
+    if-goto Pipe_271
+    push constant 16384
+    push local 1
+    push constant 32
+    call Math.multiply 2
+    add
+    push local 2
+    add
+    pop local 0
+    push local 1
+    push constant 1
+    neg
+    gt
+    push local 1
+    push constant 256
+    lt
+    and
+    not
+    if-goto Pipe_273
+    push local 3
+    not
+    if-goto Pipe_275
+    push local 0
+    push constant 0
+    add
+    push constant 0
+    call Memory.poke 2
+    pop temp 0
+    goto Pipe_274
+label Pipe_275
+label Pipe_274
+    push local 4
+    not
+    if-goto Pipe_277
+    push local 0
+    push constant 1
+    add
+    push constant 0
+    call Memory.poke 2
+    pop temp 0
+    goto Pipe_276
+label Pipe_277
+label Pipe_276
+    push local 5
+    not
+    if-goto Pipe_279
+    push local 0
+    push constant 2
+    add
+    push constant 0
+    call Memory.poke 2
+    pop temp 0
+    goto Pipe_278
+label Pipe_279
+label Pipe_278
+    goto Pipe_272
+label Pipe_273
+label Pipe_272
+    push local 1
+    push constant 1
+    add
+    pop local 1
+    goto Pipe_270
+label Pipe_271
+    push constant 0
+    return

@@ -1,0 +1,110 @@
+function Complex.new 0
+    push constant 2
+    call Memory.alloc 1
+    pop pointer 0
+    push argument 0
+    pop this 0
+    push argument 1
+    pop this 1
+    push pointer 0
+    return
+function Complex.getReal 0
+    push argument 0
+    pop pointer 0
+    push this 0
+    return
+function Complex.getImaginary 0
+    push argument 0
+    pop pointer 0
+    push this 1
+    return
+function Complex.plus 1
+    push argument 0
+    pop pointer 0
+    push this 0
+    push argument 1
+    call Complex.getReal 1
+    add
+    push this 1
+    push argument 1
+    call Complex.getImaginary 1
+    add
+    call Complex.new 2
+    pop local 0
+    push local 0
+    return
+function Complex.minus 1
+    push argument 0
+    pop pointer 0
+    push this 0
+    push argument 1
+    call Complex.getReal 1
+    sub
+    push this 1
+    push argument 1
+    call Complex.getImaginary 1
+    sub
+    call Complex.new 2
+    pop local 0
+    push local 0
+    return
+function Complex.times 2
+    push argument 0
+    pop pointer 0
+    push this 0
+    push argument 1
+    call Complex.getReal 1
+    call Math.multiply 2
+    push this 1
+    push argument 1
+    call Complex.getImaginary 1
+    call Math.multiply 2
+    sub
+    pop local 0
+    push this 0
+    push argument 1
+    call Complex.getImaginary 1
+    call Math.multiply 2
+    push this 1
+    push argument 1
+    call Complex.getReal 1
+    call Math.multiply 2
+    add
+    pop local 1
+    push local 0
+    push local 1
+    call Complex.new 2
+    return
+function Complex.dispose 0
+    push argument 0
+    pop pointer 0
+    push pointer 0
+    call Memory.deAlloc 1
+    pop temp 0
+    push constant 0
+    return
+function Complex.print 0
+    push argument 0
+    pop pointer 0
+    push this 0
+    call Output.printInt 1
+    pop temp 0
+    push constant 1
+    call String.new 1
+    push constant 43
+    call String.appendChar 2
+    call Output.printString 1
+    pop temp 0
+    push this 1
+    call Output.printInt 1
+    pop temp 0
+    push constant 1
+    call String.new 1
+    push constant 105
+    call String.appendChar 2
+    call Output.printString 1
+    pop temp 0
+    call Output.println 0
+    pop temp 0
+    push constant 0
+    return
