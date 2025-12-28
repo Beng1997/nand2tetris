@@ -1,0 +1,155 @@
+// This file is part of www.nand2tetris.org
+// and the book "The Elements of Computing Systems"
+// by Nisan and Schocken, MIT Press.
+// File name: projects/12/Math.jack
+/**
+ *  A library of commonly used mathematical functions.
+ *  All functions runs in O(n), where n is the number of bits used
+ *  for representing a two's complement integer value (16 in the Hack computer). 
+ *  Note: Jack compilers implement multiplication and division
+ *  using calls to OS functions in this class.
+ */
+class Math {
+    static int n;             // Number of bits used for representing a two's complement integer
+    static Array powersOfTwo; // Stores 2^0, 2^1, 2^2,..., 2^(n-1)
+
+    // Initializes the Math library.
+    function void init() {
+		var int i,power;
+		let n=16;
+		let powersOfTwo = Array.new(16);
+		let i=0;
+		let power=1;
+		while(i < 16){
+			let powersOfTwo[i]=power;
+			let i=i+1;
+			let power=power+power; //shifting by 1
+		}
+		return;
+    }
+
+    /** Returns the product of x and y. 
+     *  When a Jack compiler detects the multiplication operator '*'
+     *  in an expression, it handles it by invoking this method. 
+     *  Thus, in Jack, x * y and Math.multiply(x,y) return the same value. */
+	function int multiply(int x, int y) {
+		var int res, i;
+		let res = 0;
+		let i = 0;
+		while (i < n) {
+			if (~((y & powersOfTwo[i]) = 0)) { 
+				let res = res + x;
+			}
+			let i = i + 1;
+			let x=x+x;
+		}
+		return res;
+	}
+    
+
+    /** Returns the integer part of x / y.
+     *  When a Jack compiler detects the division operator '/'
+     *  an an expression, it handles it by invoking this method.
+     *  Thus, x/y and Math.divide(x,y) return the same value. */
+	function int divide(int x, int y) {
+		var int absX, absY, q, res, doubleY;
+		var boolean neg;
+
+		
+		if (y = 0) {
+			do Sys.error(3); 
+			return 0; 
+		}
+		
+		if (x < 0) {
+			if (y < 0) {
+				let neg = false;
+        } else {
+            let neg = true;
+        }
+		} else {
+        if (y < 0) {
+            let neg = true;
+        } else {
+            let neg = false;
+			}
+    	}
+		let absX = Math.abs(x);
+		let absY = Math.abs(y);
+
+		if (absY > absX) { //y is greater than x
+			return 0;
+		}
+		let doubleY = absY + absY; //shifting
+		
+		if ((doubleY < 0) | (doubleY > absX)) {
+			let q = 0;
+		} 
+		else {
+			let q = Math.divide(absX, doubleY);
+		}
+		let res = q + q;
+		if ((absX - Math.multiply(res, absY)) < absY) {
+			let q = res;
+		} 
+		else {
+			let q = res + 1;
+		}
+		if (neg) {
+			return 0 - q; 
+		}
+		return q;
+	}
+
+
+    /** Returns the integer part of the square root of x. */
+	function int sqrt(int x) {
+			var int y, i, temp, tempSq;
+			let y = 0;
+			let i = 7; // (16 / 2) - 1
+
+			// FIX 1: Use ~(i < 0) instead of (i > -1) to ensure the loop runs for i=0
+			while (~(i < 0)) {
+				let temp = y + powersOfTwo[i];
+				let tempSq = Math.multiply(temp, temp);
+				
+				// FIX 2: Check (tempSq > 0) to prevent overflow errors
+				// If tempSq is negative, it means we overflowed 16-bit max, so we must skip.
+				if (((tempSq < x) | (tempSq = x)) & (tempSq > 0)) {
+					let y = temp;
+				}
+				let i = i - 1;
+			}
+			return y;
+	}
+
+    /** Returns the greater value. */
+    function int max(int a, int b) {
+		if(a < b){
+			return b;
+		}
+		else {
+			return a;
+		}
+    }
+
+    /** Returns the smaller value. */
+    function int min(int a, int b) {
+		if(a < b){
+			return a;
+		}
+		else {
+			return b;
+		}
+    }
+
+    /** Returns the absolute value of x. */
+    function int abs(int x) {
+		if( x < 0){
+			return ~x+1; //basic two complement
+		}
+		else {
+			return x;
+		}
+    }
+}
